@@ -72,6 +72,7 @@ CC=			$(SPRO_VROOT)/bin/cc
 #	include $(SRC)/Makefile.master
 #
 INS_STRIP_CDDL= $(POUND_SIGN)
+INS_STRIP_CDDL_OVR= $(POUND_SIGN)
 $(INS_STRIP_CDDL)$(INS_STRIP_CDDL_OVR)INS_CDDL_ARG= -C
 INS=            install $(INS_CDDL_ARG)
 
