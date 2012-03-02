@@ -79,16 +79,6 @@
 		    value='svc:/network/datalink-management' />
 	</dependency>
 
-	<!-- Make sure that unconfiguration step is finished before
-	     configuration one is initiated. -->
-	<dependency name='milestoneconfig_milestone_unconfig'
-	    grouping='require_all'
-	    restart_on='none'
-	    type='service'>
-		<service_fmri
-		    value='svc:/milestone/unconfig:default' />
-	</dependency>
-
 	<!-- manifest-import is expected to
 	     * apply System Configuration profiles residing
 	       in /etc/svc/profile/site/ directory.

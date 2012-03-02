@@ -48,18 +48,6 @@
 		<service_fmri value='svc:/system/console-login' />
 	</dependency>
 
-        <!-- Do not start the auto-installer until devchassis daemon 
-             SMF service is online to ensure target selection works 
-             correctly for manifests that specifies receptacle
-             information for the drives -->
-        <dependency
-                name='devchassis-daemon'
-                grouping='require_all'
-                restart_on='none'
-                type='service'>
-                <service_fmri value='svc:/system/devchassis:daemon' />
-        </dependency>
-
 	<dependency
 		name='manifest-locator'
 		grouping='require_all'
