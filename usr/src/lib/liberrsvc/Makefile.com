@@ -20,39 +20,43 @@
 #
 
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-include ../Makefile.lib
+SUBDIRS		=
 
-SUBDIRS=        $(MACH)
-$(BUILD64)SUBDIRS += $(MACH64)
+all		:= TARGET= all
+install		:= TARGET= install
+clean		:= TARGET= clean
+clobber		:= TARGET= clobber
+lint		:= TARGET= lint
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-lint :=         TARGET= lint
+LIBRARY		= liberrsvc.a
+VERS		= .1
 
-.KEEP_STATE:
+OBJECTS		= errsvc.o
 
-all clean clobber install lint: $(SUBDIRS)
+include ../../Makefile.lib
 
-PRIVHDRS	=
-EXPHDRS		= libaiscf.h
-HDRS		= $(EXPHDRS) $(PRIVHDRS)
+SRCDIR		= ..
+INCLUDE		= -I/usr/include/python2.6
 
-install:	all
+CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master)
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -DNDEBUG
+SOFLAGS		+= -lpython2.6 -lc -zdefs
 
-install_h:	$(EXPHDRS:%=$(ROOTINC)/%)
+static:		$(LIBS)
 
-check: $(CHECKHDRS)
+dynamic:	$(DYNLIB) $(DYNLIBLINK)
+
+all:		$(HDRS) dynamic .WAIT $(SUBDIRS)
+
+lint:		lint_SRCS
 
 $(SUBDIRS):	FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
+	cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
 
-include ../Makefile.targ
-
+include ../../Makefile.targ

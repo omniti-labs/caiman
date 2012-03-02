@@ -18,52 +18,37 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+
 #
-SUBDIRS		=
-
-all		:= TARGET= all
-install		:= TARGET= install
-clean		:= TARGET= clean
-clobber		:= TARGET= clobber
-lint		:= TARGET= lint
-
-LIBRARY		= liblogger.a
-VERS		= .1
-
-OBJECTS		= logger.o
-
-SRCS =          $(OBJECTS:.o=.c)
-
-PRIVHDRS	=
-EXPHDRS		= logger.h
-HDRS            = $(EXPHDRS) $(PRIVHDRS)
+# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Use is subject to license terms.
+#
 
 include ../Makefile.lib
 
-INCLUDE		= -I/usr/include/python2.6
+SUBDIRS=        $(MACH)
+$(BUILD64)SUBDIRS += $(MACH64)
 
-CPPFLAGS        += ${INCLUDE} -D${ARCH}
-CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -DNDEBUG
-SOFLAGS		+= -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-lpython2.6 -lnvpair -lerrsvc
+all :=          TARGET= all
+clean :=        TARGET= clean
+clobber :=      TARGET= clobber
+install :=      TARGET= install
+lint :=         TARGET= lint
 
-all:		$(HDRS) dynamic .WAIT $(SUBDIRS)
+.KEEP_STATE:
 
-static:		$(LIBS)
+all clean clobber install lint: $(SUBDIRS)
 
-dynamic:	$(DYNLIB) $(DYNLIBLINK)
+PRIVHDRS	= 
+EXPHDRS		= logger.h
+HDRS		= $(EXPHDRS) $(PRIVHDRS)
 
 install_h:	$(EXPHDRS:%=$(ROOTINC)/%)
 
-install:	all .WAIT \
-		$(ROOTUSRLIB) $(ROOTUSRLIBDYNLIB) \
-		$(ROOTUSRLIBDYNLIBLINK)
-
-lint:		lint_SRCS
+check: $(CHECKHDRS)
 
 $(SUBDIRS):	FRC
-	cd $@; pwd; $(MAKE) $(TARGET)
+	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
 

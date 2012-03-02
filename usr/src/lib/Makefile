@@ -71,6 +71,7 @@ install_h: $(SUBDIRS)
 # library dependencies
 libaiscf_pymod:		libaiscf
 liblogsvc_pymod:	liblogsvc
+install_logging:	liberrsvc
 
 $(SUBDIRS): FRC
 	cd $@; pwd; $(MAKE) $(TARGET)

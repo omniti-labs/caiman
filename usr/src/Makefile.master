@@ -77,7 +77,7 @@ $(INS_STRIP_CDDL)$(INS_STRIP_CDDL_OVR)INS_CDDL_ARG= -C
 INS=            install $(INS_CDDL_ARG)
 
 # Other commands
-LD=			$(CC)
+LD=			/usr/ccs/bin/ld
 RM=			/usr/bin/rm -f
 SYMLINK=		/usr/bin/ln -s
 LN=			/usr/bin/ln
@@ -109,9 +109,14 @@ ONUSRLIBDIR=		$(ONREF_PROTO)/usr/lib
 ONINCDIR=		$(ONREF_PROTO)/usr/include
 
 # Common path definitions.
+i386_USRLIB=		/usr/lib
+amd64_USRLIB=		/usr/lib/64
+USRLIB=$($(MACH)_USRLIB)
 ADMINLIB=		/usr/snadm/lib
+ADMINLIB64=		/usr/snadm/lib/$(MACH64)
 ROOTADMIN=		$(ROOT)/usr/snadm
 ROOTADMINLIB=		$(ROOTADMIN)/lib
+ROOTADMINLIB64=		$(ROOTADMIN)/lib/$(MACH64)
 ROOTBIN=		$(ROOT)/bin
 ROOTDC=			$(ROOT)/usr/share/distro_const
 ROOTDC_PROFILE= $(ROOTDC)/profile
@@ -125,9 +130,11 @@ ROOTOPTINSTALLTESTBIN=	$(ROOT)/opt/install-test/bin
 ROOTPYTHON=		$(ROOTUSRLIB)/python2.6
 ROOTPYTHONVENDOR=	$(ROOTPYTHON)/vendor-packages
 ROOTPYTHONVENDORINSTALL=	$(ROOTPYTHONVENDOR)/osol_install
+ROOTPYTHONVENDORINSTALL64=	$(ROOTPYTHONVENDOR)/osol_install/64
 ROOTPYTHONVENDORINSTALLAI=	$(ROOTPYTHONVENDORINSTALL)/auto_install
 ROOTPYTHONVENDORINSTALLPROF=    $(ROOTPYTHONVENDORINSTALL)/profile
 ROOTPYTHONVENDORSOLINSTALL=	$(ROOTPYTHONVENDOR)/solaris_install
+ROOTPYTHONVENDORSOLINSTALL64=	$(ROOTPYTHONVENDOR)/solaris_install/64
 ROOTPYTHONVENDORSOLINSTALLBOOT =	$(ROOTPYTHONVENDORSOLINSTALL)/boot
 ROOTPYTHONVENDORSOLINSTALLCONFIGURATION =	$(ROOTPYTHONVENDORSOLINSTALL)/configuration
 ROOTPYTHONVENDORSOLINSTALLDATACACHE=	$(ROOTPYTHONVENDORSOLINSTALL)/data_object
@@ -174,6 +181,7 @@ ROOTUSRSHARETI=		$(ROOTUSRSHARE)/text-install
 ROOTUSRSHARETIHELP=	$(ROOTUSRSHARETI)/help
 ROOTUSRSHARETIHELPC=	$(ROOTUSRSHARETIHELP)/C
 ROOTUSRLIB=		$(ROOT)/usr/lib
+ROOTUSRLIB64=		$(ROOT)/usr/lib/$(MACH64)
 ROOTUSRLIBBOOT=		$(ROOTUSRLIB)/boot
 ROOTUSRLIBMSGS=		$(ROOTUSRLIB)/locale/C/LC_MESSAGES
 ROOTUSRSBIN=		$(ROOT)/usr/sbin
@@ -243,8 +251,31 @@ INSTALL=	$(INS.file)
 #
 INS.pyfile=     $(INS.file); $(TOUCH) -r $< $@
 
-MACH=	$(TARGET_MACH:-%=%)
-ARCH=	$(TARGET_ARCH:-%=%)
+__GNUC=			$(POUND_SIGN)
+__GNUC64=		$(__GNUC)
+i386_CC=                $(ONBLD_TOOLS)/bin/$(MACH)/cw -_cc
+$(__GNUC)i386_CC=       $(ONBLD_TOOLS)/bin/$(MACH)/cw -_gcc
+i386_CC=		$(SPRO_VROOT)/bin/cc
+i386_LD=		/usr/ccs/bin/ld
+amd64_CC=               $(ONBLD_TOOLS)/bin/$(MACH)/cw -_cc
+$(__GNUC64)amd64_CC=    $(ONBLD_TOOLS)/bin/$(MACH)/cw -_gcc
+amd64_CC=               $(SPRO_VROOT)/bin/cc
+amd64_LD=		/usr/ccs/bin/ld
+
+CC=	$($(MACH)_CC)
+LD=	$($(MACH)_LD)
+
+#MACH=	$(TARGET_MACH:-%=%)
+#ARCH=	$(TARGET_ARCH:-%=%)
+MACH64=	$(MACH:i386=amd64)
+
+i386_BUILD64=
+
+BUILD64=  $($(MACH)_BUILD64)
+
+i386_XARCH=
+amd64_XARCH=    -m64 -Ui386 -U__i386
+LDBITS=		-32
 
 # Message catalog build rule for packaging commands.
 BUILD.po= $(XGETTEXT) -d msg.$$$$ $(XGETFLAGS) $<.i ;\
@@ -263,38 +294,26 @@ CLOBBERFILES += $(POFILE) $(POFILES)
 COMPILE.po=	$(CC) $(CFLAGS) \
 		    $(CPPFLAGS:\"$(TEXT_DOMAIN)\"=$(TEXT_DOMAIN)) -E -C
 
-COMPILE.c=	$(CC) $(CFLAGS) $(CPPFLAGS) -c
+i386_COPTFLAG=	-O
+amd64_COPTFLAG=	-xO3
 
-# Set CFLAGS and CCFLAGS and reset below if release build.
-# Only optimize for release builds
-# The -norunpath flag must be passed to any library or executables
-# that is built with "CC". This suppresses the automatic generation
-# of runtime search paths that can cause local and SWAN paths to be
-# included in libraries and executables which would be inappropriate
-# for use outside of SWAN (that is, customer sites)
-CFLAGS:sh =if [ "`uname -p`" = "sparc" ]; then \
-		echo "-xc99=%none -Wa,-xcg92" ; \
-          else  echo "-xc99=%none"; \
-          fi
-CCFLAGS:sh =if [ "`uname -p`" = "sparc" ]; then \
-		echo "-Qoption fbe -xcg92" ; \
-          else  echo ""; \
-          fi
-
-$(RELEASE_BUILD)CFLAGS:sh =if [ "`uname -p`" = "sparc" ]; then \
-		echo "-xc99=%none -O -Wa,-xcg92" ; \
-          else  echo "-xc99=%none -O"; \
-          fi
- 
-$(RELEASE_BUILD)CCFLAGS:sh =if [ "`uname -p`" = "sparc" ]; then \
-		echo "-O -Qoption fbe -xcg92" ; \
-          else  echo "-O"; \
-          fi
-CCFLAGS += -norunpath -compat=4
+i386_CFLAGS=	$(i386_XARCH)
+amd64_CFLAGS=	$(amd64_XARCH)
 
 # CPPFLAGS.master allows values to be prepended to CPPFLAGS.
 CPPFLAGS.master= -I$(ROOT)/usr/include -I$(ONINCDIR)
 CPPFLAGS= $(CPPFLAGS.master)
+
+COPTFLAG=	$($(MACH)_COPTFLAG)
+COPTFLAG64=	$($(MACH64)_COPTFLAG)
+CFLAGS=		$(COPTFLAG) $($(MACH)_CFLAGS)
+CFLAGS64=	$(COPTFLAG64) $($(MACH64)_CFLAGS)
+
+COMPILE.c=	$(CC) $(CFLAGS) $(CPPFLAGS) -c
+COMPILE64.c=	$(CC) $(CFLAGS64) $(CPPFLAGS) -c
+
+LINK.c=		$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+LINK64.c=	$(CC) $(CFLAGS64) $(CPPFLAGS) $(LDFLAGS)
 
 # Rules (normally from default.mk) and macros which are used for post
 # processing files. Normally, these do stripping of the comment section

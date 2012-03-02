@@ -55,6 +55,7 @@ ROOT.BIN= \
 	/usr/bin \
 	/usr/include \
 	/usr/lib \
+	/usr/lib/64 \
 	/usr/lib/install \
 	/usr/lib/installadm \
 	/usr/lib/locale \
@@ -63,6 +64,7 @@ ROOT.BIN= \
 	/usr/lib/python2.6 \
 	/usr/lib/python2.6/vendor-packages \
 	/usr/lib/python2.6/vendor-packages/osol_install \
+	/usr/lib/python2.6/vendor-packages/osol_install/64 \
 	/usr/lib/python2.6/vendor-packages/osol_install/auto_install \
 	/usr/lib/python2.6/vendor-packages/osol_install/profile \
 	/usr/lib/python2.6/vendor-packages/solaris_install/auto_install \
@@ -72,6 +74,7 @@ ROOT.BIN= \
 	/usr/lib/python2.6/vendor-packages/solaris_install/distro_const/checkpoints/defaultfiles \
 	/usr/lib/python2.6/vendor-packages/solaris_install/distro_const/checkpoints/xslt \
 	/usr/lib/python2.6/vendor-packages/solaris_install \
+	/usr/lib/python2.6/vendor-packages/solaris_install/64 \
 	/usr/lib/python2.6/vendor-packages/solaris_install/boot \
 	/usr/lib/python2.6/vendor-packages/solaris_install/configuration \
 	/usr/lib/python2.6/vendor-packages/solaris_install/data_object \
@@ -123,6 +126,7 @@ OTHERS= \
 	/opt/install-test/bin \
 	/usr/include/admin \
 	/usr/snadm/lib \
+	/usr/snadm/lib/64 \
 	/var/ai \
 	/var/ai/image-server \
 	/var/ai/image-server/cgi-bin \

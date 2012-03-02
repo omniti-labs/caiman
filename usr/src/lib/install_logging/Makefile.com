@@ -18,41 +18,43 @@
 #
 # CDDL HEADER END
 #
-
+# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
-#
+SUBDIRS		=
 
-include ../Makefile.lib
+all		:= TARGET= all
+install		:= TARGET= install
+clean		:= TARGET= clean
+clobber		:= TARGET= clobber
+lint		:= TARGET= lint
 
-SUBDIRS=        $(MACH)
-$(BUILD64)SUBDIRS += $(MACH64)
+LIBRARY		= liblogger.a
+VERS		= .1
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-lint :=         TARGET= lint
+OBJECTS		= logger.o
 
-.KEEP_STATE:
+SRCS =          $(OBJECTS:.o=.c)
 
-all clean clobber install lint: $(SUBDIRS)
+include ../../Makefile.lib
 
-PRIVHDRS	=
-EXPHDRS		= libaiscf.h
-HDRS		= $(EXPHDRS) $(PRIVHDRS)
+SRCDIR		= ..
+INCLUDE		= -I/usr/include/python2.6
 
-install:	all
+CPPFLAGS        += ${INCLUDE} -D${ARCH}
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -DNDEBUG
 
-install_h:	$(EXPHDRS:%=$(ROOTINC)/%)
+all:		$(HDRS) dynamic .WAIT $(SUBDIRS)
 
-check: $(CHECKHDRS)
+static:		$(LIBS)
+
+dynamic:	$(DYNLIB) $(DYNLIBLINK)
+
+lint:		lint_SRCS
 
 $(SUBDIRS):	FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
+	cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
 
-include ../Makefile.targ
+include ../../Makefile.targ
 

@@ -27,67 +27,62 @@
 # SPMI common library makefile
 #
 
-include ../Makefile.lib
+LIBRARY	= libspmicommon.a
+VERS	= .1
 
-SUBDIRS=        $(MACH)
-$(BUILD64)SUBDIRS += $(MACH64)
+OBJECTS	= \
+	common_arch.o \
+	common_boolean.o \
+	common_client.o \
+	common_linklist.o \
+	common_misc.o \
+	common_mmap.o \
+	common_mount.o \
+	common_pathcanon.o \
+	common_post.o \
+	common_proc.o \
+	common_process_control.o \
+	common_scriptwrite.o \
+	common_strlist.o \
+	common_url.o \
+	common_util.o
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-lint :=         TARGET= lint
+SRCS =	$(OBJECTS:.o=.c)
 
-.KEEP_STATE:
-
-all clean clobber install lint: $(SUBDIRS)
-
-PRIVHDRS	= \
-	spmicommon_lib.h \
-	common_strings.h \
-	common_linklist_in.h \
-	common_process_control_in.h
-EXPHDRS		= spmicommon_api.h
-HDRS		= $(EXPHDRS) $(PRIVHDRS)
+include ../../Makefile.lib
 
 SRCDIR		= ..
+CPPFLAGS	+= -D${ARCH}
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS}
+LDFLAGS		+=
+SOFLAGS		+= -ldl -lwanboot
 
 LINTERR		= lint_errors
 LINTFILES	= ${SRCS:%.c=${ARCH}/%.ln}
 LINTFLAGS	= -umx ${CPPFLAGS}
 
-CLOBBERFILES	= *.po *.mo
-
-MSG_DOMAIN	= SUNW_INSTALL_LIBCOMMON
-
 .KEEP_STATE:
 
-all clean clobber install lint: $(SUBDIRS)
+all: $(HDRS) .WAIT static dynamic
 
-install:	all .WAIT $(SUBDIRS) .WAIT $(INSTMSGS)
+static: $(LIBS)
 
-install_test:	all .WAIT $(SUBDIRS) .WAIT $(INSTMSGS)
+dynamic: $(DYNLIB) $(DYNLIBLINK)
 
-install_h:	$(ROOTUSRINCLEXP)
+install:	all .WAIT \
+		$(ROOTADMINLIB) .WAIT $(ROOTADMINLIBS) $(ROOTADMINLIBDYNLIB) \
+		$(ROOTADMINLIBDYNLIBLINK) .WAIT msgs .WAIT
 
-msgs: ${MSG_DOMAIN}.po
+install_test:	all .WAIT \
+		$(ROOTADMINLIB) $(ROOTADMINLIBS) $(ROOTADMINLIBDYNLIB) \
+		$(ROOTADMINLIBDYNLIBLINK) .WAIT
 
-${MSG_DOMAIN}.po: ${SRCS} ${HDRS}
-	@echo "Making messages file ${MSG_DOMAIN}.po"
-	@${COMPILE.c} -C -E ${SRCS} 2>/dev/null | \
-		xgettext -d ${MSG_DOMAIN} -s \
-			-c "i18n:" - >/dev/null 2>&1
- 
+common_proc:	objs/$(ARCH)/$(LIBRARY)
+		$(CC) -o objs/$(ARCH)/$@ -DMODULE_TEST $@.c \
+			objs/$(ARCH)/common_proc.o \
+			objs/$(ARCH)/$(LIBRARY)
+
 lint:  ${SRCS} ${HDRS}
 	${LINT.c} ${SRCS}
 
-install_h:      $(EXPHDRS:%=$(ROOTINC)/%)
-
-check: $(CHECKHDRS)
-
-$(SUBDIRS):     FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
-
-include ../Makefile.targ
+include ../../Makefile.targ

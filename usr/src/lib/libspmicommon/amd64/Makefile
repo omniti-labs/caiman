@@ -24,35 +24,15 @@
 # Use is subject to license terms.
 #
 
-include ../Makefile.lib
+include ../Makefile.com
+include ../../Makefile.lib.64
 
-SUBDIRS=        $(MACH)
-$(BUILD64)SUBDIRS += $(MACH64)
+SOFLAGS		+= -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) -L/lib/64
 
-all :=          TARGET= all
-clean :=        TARGET= clean
-clobber :=      TARGET= clobber
-install :=      TARGET= install
-lint :=         TARGET= lint
+install:	all .WAIT \
+		$(ROOTADMINLIB64) .WAIT $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
+		$(ROOTADMINLIBDYNLIBLINK64) .WAIT msgs .WAIT $(INSTMSGS)
 
-.KEEP_STATE:
-
-all clean clobber install lint: $(SUBDIRS)
-
-PRIVHDRS	=
-EXPHDRS		= libaiscf.h
-HDRS		= $(EXPHDRS) $(PRIVHDRS)
-
-install:	all
-
-install_h:	$(EXPHDRS:%=$(ROOTINC)/%)
-
-check: $(CHECKHDRS)
-
-$(SUBDIRS):	FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
-
-include ../Makefile.targ
-
+install_test:	all .WAIT \
+		$(ROOTADMINLIB64) $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
+		$(ROOTADMINLIBDYNLIBLINK64)
