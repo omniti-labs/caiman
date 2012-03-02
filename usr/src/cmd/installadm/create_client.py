@@ -70,7 +70,7 @@ def parse_options(cmd_options=None):
     # accept multiple -b options (so append to a list)
     parser.add_option("-b", "--boot-args", dest="boot_args", action="append",
                       type="string", nargs=1,
-                      help=_("boot arguments to pass to Solaris kernel"))
+                      help=_("boot arguments to pass to Illumos kernel"))
     parser.add_option("-e", "--macaddr", dest="mac_address", action="callback",
                       nargs=1, type="string",
                       help=_("MAC address of client to add"),

@@ -21,7 +21,7 @@
  
   Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 
-  XML specification for building an Oracle Solaris installer iso image
+  XML specification for building an OmniOS installer iso image
 -->
 <software_data action="install">
   <name>sbin</name>

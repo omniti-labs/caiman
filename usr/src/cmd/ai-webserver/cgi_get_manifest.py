@@ -618,11 +618,11 @@ def list_manifests(service):
                                             align="center")))
             web_page = E.HTML(
                          E.HEAD(
-                            E.TITLE(_("Solaris Automated "
+                            E.TITLE(_("OmniOS Automated "
                                       "Installation Webserver"))
                             ),
                          E.BODY(
-                            E.H1(_("Welcome to the Solaris "
+                            E.H1(_("Welcome to the OmniOS "
                                    "Automated Installation webserver!")),
                             E.P(_("Service '%s' has the following "
                                 "manifests available, served to clients "

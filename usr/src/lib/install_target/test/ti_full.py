@@ -55,8 +55,7 @@ from solaris_install.target.size import Size
 GBSECTOR = long(1024 * 1024 * 1024 / 512)  # 1 GB of sectors
 
 # CTD of the disk to repartition.  *** THE DATA ON THE DISK WILL BE DESTROYED
-MASTER_CTD = "c8t3d0"   # leeroy.us.oracle.com - x86
-#MASTER_CTD = "c4t2d0"   # t2k-brm-09.us.oracle.com - sparc
+MASTER_CTX = "c2t1t0"
 
 
 class TestTI(unittest.TestCase):

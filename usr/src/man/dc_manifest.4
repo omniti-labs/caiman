@@ -7,13 +7,13 @@ dc_manifest \- Customizing the manifest files for the distribution constructor
 .SH SYNOPSIS
 .LP
 .nf
-The following manifest files can be used to build various Oracle Solaris images.
+The following manifest files can be used to build various OmniOS images.
 These manifests are included in the distribution-constructor package.
 .fi
 
 .LP
 .nf
-To build x86 Oracle Solaris live CD images:
+To build x86 OmniOS live CD images:
 \fB/usr/share/distro_const/dc_livecd.xml\fR
 .fi
 
@@ -25,26 +25,14 @@ To build x86 automated installation images:
 
 .LP
 .nf
-To build SPARC automated installation images:
-\fB/usr/share/distro_const/dc_ai_sparc.xml\fR
-.fi
-
-.LP
-.nf
 To build x86 text installation images:
 \fB/usr/share/distro_const/dc_text_x86.xml\fR
-.fi
-
-.LP
-.nf
-To build SPARC text installation images:
-\fB/usr/share/distro_const/dc_text_sparc.xml\fR
 .fi
 
 .SH DESCRIPTION
 .sp
 .LP
-The distribution constructor (DC) can be used to build Oracle Solaris installation images.
+The distribution constructor (DC) can be used to build OmniOS installation images.
 .sp
 .LP
 DC XML manifest files are used as input to the distribution constructor. These manifests define the image that the distribution constructor builds. Per the list above, you can use different manifests to build different kinds of images.
@@ -69,10 +57,10 @@ The default elements and attributes provided below vary depending on which manif
 .RE
 .sp
 .LP
-\fB<distro name="Oracle_Solaris_Text_X86" add_timestamp="false">\fR
+\fB<distro name="OmniOS_Text_X86" add_timestamp="false">\fR
 .sp
 .LP
-This element provides the default name, Oracle_Solaris_Text_X86, for the image that you plan to build. You can use this name, or provide a unique name for your image. 
+This element provides the default name, OmniOS_Text_X86, for the image that you plan to build. You can use this name, or provide a unique name for your image. 
 .sp
 .LP
 If you intend to perform a series of builds of an image and retain the incremental images, you can change the timestamp variable to "true", and a timestamp will be automatically appended to the name for each image.
@@ -82,7 +70,7 @@ If you need to specify an HTTP proxy, uncomment the distro name element that inc
 .sp
 .in +2
 .nf
-<distro name="Oracle_Solaris_Text_SPARC" add_timestamp="false"
+<distro name="OmniOS_Text_X86" add_timestamp="false"
 http_proxy="http://example.com">
 .fi
 .in -2
@@ -207,7 +195,7 @@ See the following example.
 .nf
 <source>
   <publisher name="publisher1">
-    <origin name="http://example.oracle.com/primary-pub"/>
+    <origin name="http://example.omniti.com/primary-pub"/>
     <mirror name="mirror.example.com"></mirror>
   </publisher>
   <publisher name="publisher2">
@@ -318,8 +306,8 @@ In the source element, use the publisher name and optional  mirror name tags to 
 .in +2
 .nf
 <source>
-  <publisher name="solaris">
-    <origin name="http://pkg.oracle.com/solaris/release/"/>
+  <publisher name="os.omniti.com">
+    <origin name="http://pkg.omniti.com/omnios/release/"/>
   </publisher>
 </source>
 .fi
@@ -424,4 +412,4 @@ Interface StabilityUnder Development
 \fBdistro_const\fR(1M), \fBpkg\fR(1)
 .sp
 .LP
-\fICreating a Custom Oracle Solaris 11 Installation Image\fR in the OTN documentation library for the current release.
+\fICreating a Custom OmniOS 11 Installation Image\fR in the OTN documentation library for the current release.

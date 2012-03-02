@@ -43,7 +43,7 @@ fi
 
 # Define the menu of commands and prompts
 menu_items=( \
-    (menu_str=`gettext "Install Oracle Solaris"`			 \
+    (menu_str=`gettext "Install OmniOS"`			 \
 	cmds=("/usr/bin/text-install")					 \
 	do_subprocess="true"						 \
 	msg_str="")							 \
@@ -171,7 +171,7 @@ for ((;;)) ; do
 	# Display the menu.
 	clear
 	printf \
-	    "`gettext 'Welcome to the Oracle Solaris installation menu'`"
+	    "`gettext 'Welcome to the OmniOS installation menu'`"
 	printf " \n\n"
 	for i in "${!menu_items[@]}"; do
 		print "\t$((${i} + 1))  ${menu_items[$i].menu_str}"

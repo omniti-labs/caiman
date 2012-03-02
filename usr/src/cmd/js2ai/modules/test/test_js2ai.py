@@ -60,7 +60,7 @@ TEST_SIMPLE_PROFILE_CONFIG = \
     <software type="IPS">
       <source>
         <publisher name="solaris">
-          <origin name="http://pkg.oracle.com/solaris/release"/>
+          <origin name="http://pkg.omniti.com/omnios/release"/>
         </publisher>
       </source>
     </software>
@@ -892,8 +892,8 @@ class Test_ReadSysidcfg5(unittest.TestCase):
             # Test a different syntax format
             fhandle.write("name_service=DNS\n"
                     "{\n"
-                    "name_server=138.2.202.15\n"
-                    "search=us.oracle.com\n"
+                    "name_server=10.80.117.6\n"
+                    "search=omniti.com\n"
                     "}\n")
             fhandle.write('')
 
@@ -938,8 +938,8 @@ class Test_ReadSysidcfg6(unittest.TestCase):
             # or name_service
             fhandle.write("root_password=anything\n"
                     "{\n"
-                    "name_server=138.2.202.15\n"
-                    "search=us.oracle.com\n"
+                    "name_server=10.80.117.6\n"
+                    "search=omniti.com\n"
                     "}\n")
             fhandle.write('')
 

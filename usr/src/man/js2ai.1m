@@ -114,10 +114,10 @@ T}
 Only the value \fBinitial_install\fR is supported.
 T}
 \fBlocale\fRT{
-No translation is performed. Make sure the locale specified is supported in Oracle Solaris 11.
+No translation is performed. Make sure the locale specified is supported in OmniOS 11.
 T}
 \fBpackage\fRT{
-An attempt to convert the specified package to its Oracle Solaris 11 equivalent is performed. Specifying the location of the package is not supported. Package lookups can take a considerable amount of time. If your profiles contain a long list of packages, you might want to use the \fB--local\fR flag during the conversion process.
+An attempt to convert the specified package to its OmniOS 11 equivalent is performed. Specifying the location of the package is not supported. Package lookups can take a considerable amount of time. If your profiles contain a long list of packages, you might want to use the \fB--local\fR flag during the conversion process.
 T}
 \fBpartitioning\fRT{
 Supported types are \fBdefault\fR and \fBexplicit\fR. Unlike JumpStart, when \fBpartitioning default\fR is specified, only the disks that \fBjs2ai\fR knows about are used. If no disks are specified in any keywords, the generated profile tells AI to choose which disk to use.
@@ -266,7 +266,7 @@ lw(1.38i) lw(4.13i)
 \fBsysidcfg\fR KeywordNotes
 _
 \fBkeyboard\fRT{
-No translation is performed. Make sure the keyboard specified in the \fBsysidcfg\fR file is supported in Oracle Solaris 11.
+No translation is performed. Make sure the keyboard specified in the \fBsysidcfg\fR file is supported in OmniOS 11.
 T}
 \fBname_service\fRT{
 Supports values \fBNone\fR, \fBDNS\fR, \fBNIS\fR, and \fBLDAP\fR. NIS+ name services are translated as NIS.
@@ -278,10 +278,10 @@ T}
 \fBsecurity_policy\fRSupports value: \fBNone\fR
 \fBservice_profile\fRSupports value: \fBlimited_net\fR
 \fBsystem_locale\fRT{
-No translation is performed. Make sure the locale specified in the \fBsysidcfg\fR file is supported in Oracle Solaris 11.
+No translation is performed. Make sure the locale specified in the \fBsysidcfg\fR file is supported in OmniOS 11.
 T}
 \fBterminal\fRT{
-No translation is performed. Make sure the terminal type specified in the \fBsysidcfg\fR file is supported in Oracle Solaris 11.
+No translation is performed. Make sure the terminal type specified in the \fBsysidcfg\fR file is supported in OmniOS 11.
 T}
 \fBtimeserver\fRSupports value: \fBlocalhost\fR
 \fBtimezone\fRNo translation is necessary.
@@ -549,12 +549,12 @@ The \fBjs2ai\fR utility attempts to flag any errors it encounters, but \fBjs2ai\
 .RS +4
 .TP
 2.
-Copy the JumpStart configuration directory of \fBrules\fR, profile, and \fBsyscfg\fR configuration files to an Oracle Solaris 11 system that has the \fBinstall/installadm\fR package installed.
+Copy the JumpStart configuration directory of \fBrules\fR, profile, and \fBsyscfg\fR configuration files to an OmniOS 11 system that has the \fBinstall/installadm\fR package installed.
 .RE
 .RS +4
 .TP
 3.
-In the JumpStart configuration directory that you copied to the Oracle Solaris 11 system in step 2, run the \fBjs2ai\fR conversion tool.
+In the JumpStart configuration directory that you copied to the OmniOS 11 system in step 2, run the \fBjs2ai\fR conversion tool.
 .sp
 .in +2
 .nf
@@ -674,7 +674,7 @@ If any validation errors occur for any of the processed \fBsysidcfg\fR files, th
 .RS +4
 .TP
 9.
-The \fBjs2ai\fR conversion process is complete. Perform a manual verification of the resulting criteria, AI manifest, and SC profile files. The disk space requirements for an Oracle Solaris 11 installation are different from the disk space required for an Oracle Solaris 10 installation. Make sure the disk space allocated in your AI manifests meets the requirements of Oracle Solaris 11.
+The \fBjs2ai\fR conversion process is complete. Perform a manual verification of the resulting criteria, AI manifest, and SC profile files. The disk space requirements for an OmniOS 11 installation are different from the disk space required for an Oracle Solaris 10 installation. Make sure the disk space allocated in your AI manifests meets the requirements of OmniOS 11.
 .RE
 .RS +4
 .TP
@@ -980,7 +980,7 @@ Interface StabilityUncommitted
 installadm(1M), \fBpkg\fR(1)
 .sp
 .LP
-\fITransitioning From Oracle Solaris 10 Custom JumpStart to Oracle Solaris 11 Automated Installer\fR
+\fITransitioning From Oracle Solaris 10 Custom JumpStart to OmniOS 11 Automated Installer\fR
 .sp
 .LP
-Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling Oracle Solaris 11 Systems\fR
+Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling OmniOS 11 Systems\fR

@@ -8,7 +8,7 @@ NAME
 DESCRIPTION
 
      The automated installer (AI) provides a customizable,
-     hands-free installation mechanism for Oracle Solaris and
+     hands-free installation mechanism for OmniOS and
      uses an XML-based file format as the description of the
      installation parameters.  This file is called an AI
      manifest.  The installation can be customized in various
@@ -119,14 +119,14 @@ DISK LAYOUTS
      install target to very fine-grained/specific control of the
      final layout.
 
-     For Oracle Solaris, the preferred default layout is defined
+     For OmniOS, the preferred default layout is defined
      to be the following:
 
         - Using the whole of one disk (usually the boot disk or
           first disk)
         - For X86, allocating a FDISK partition that consumes the
           full disk contents
-        - For X86 and SPARC, defining a single slice 0, that will
+        - For X86, defining a single slice 0, that will
           be the full size of the disk (or FDISK partition in the
           case of X86)
         - A single root pool that uses the complete slice 0.
@@ -438,8 +438,7 @@ DISK LAYOUTS
              Partitions
 
                 Partitions can only be specified when installing
-                to an X86 based client - specifying them for a
-                SPARC client will fail. Partitions consist of
+                to an X86 based client. Partitions consist of
                 several attributes:
 
                 - name:
@@ -1072,8 +1071,8 @@ SOFTWARE SECTIONS
 .in + 9
 .nf
             <source>
-                <publisher name="solaris">
-                    <origin name="http://pkg.oracle.com/solaris/release"/>
+                <publisher name="os.omniti.com">
+                    <origin name="http://pkg.omniti.com/omnios/release"/>
                     <mirror name="http://localpkg.mycompany.com/solaris"/>
                 </publisher>
                 <publisher name="internal-software">
@@ -1318,9 +1317,6 @@ BOOT CONFIGURATION
 
           This sets the time to wait (in seconds) before the
           specialized menu item is selected.
-
-     On SPARC, it is only possible to set the "title" attribute,
-     all other settings in this section will be ignored.
 
      It is then possible to add multiple boot menu items using
      the sub-element <boot_entry>. These menu items are in

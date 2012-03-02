@@ -114,18 +114,7 @@ if [ -f "${fixedlistfile}" ]; then
 else
 	# definition file is not available - use static legacy list
         languages.fixedlist=(
-                [0]=(  name="Chinese - Simplified"		lang="zh_CN.UTF-8"	)
-                [1]=(  name="Chinese - Traditional"		lang="zh_TW.UTF-8"	)
-                [2]=(  name="English"				lang="en_US.UTF-8"	)
-                [3]=(  name="French"				lang="fr_FR.UTF-8"	)
-                [4]=(  name="German"				lang="de_DE.UTF-8"	)
-                [5]=(  name="Italian"				lang="it_IT.UTF-8"	)
-                [6]=(  name="Japanese"				lang="ja_JP.UTF-8"	)
-                [7]=(  name="Korean"				lang="ko_KR.UTF-8"	)
-                [8]=(  name="Portuguese - Brazil"		lang="pt_BR.UTF-8"	)
-                [9]=( name="Russian"				lang="ru_RU.UTF-8"	)
-                [10]=( name="Spanish"				lang="es_ES.UTF-8"	)
-                [11]=( name="Swedish"				lang="sv_SE.UTF-8"	)
+                [0]=(  name="English"				lang="en_US.UTF-8"	)
         )
 fi
 

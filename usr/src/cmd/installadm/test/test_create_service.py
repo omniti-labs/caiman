@@ -132,11 +132,11 @@ class CreateTestService(unittest.TestCase):
         self.svc_name = 'my-test-service'
         self.image_path = tempfile.mkdtemp(dir="/tmp")
         self.image_info = {'image_version': '3.0', 'grub_min_mem64': '0',
-                           'service_name': 'solaris11u1-i386-05',
+                           'service_name': 'omnios11-i386-01',
                            'grub_do_safe_default': 'true',
-                           'grub_title': 'Oracle Solaris 11',
+                           'grub_title': 'OmniOS 11',
                            'image_size': '744619',
-                           'no_install_grub_title': 'Oracle Solaris 11'}
+                           'no_install_grub_title': 'OmniOS 11'}
         self.srv_address = '$serverIP:5555'
         self.menu_path = self.image_path
         self.bootargs = ''

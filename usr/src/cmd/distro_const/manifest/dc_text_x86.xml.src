@@ -22,7 +22,7 @@
 
   Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 
-  XML specification for building an Oracle Solaris installer iso image
+  XML specification for building an OmniOS installer iso image
 -->
 <dc>
   <!--
@@ -31,9 +31,9 @@
     is to do serial builds and to keep all the incremental
     images around
   -->
-  <distro name="Oracle_Solaris_Text_X86" add_timestamp="false">
+  <distro name="OmniOS_Text_X86" add_timestamp="false">
   <!-- Uncomment if http_proxy needs to be set
-  <distro name="Oracle_Solaris_Text_X86" add_timestamp="false"
+  <distro name="OmniOS_Text_X86" add_timestamp="false"
       http_proxy="http://example.com">
   -->
     <distro_spec>
@@ -124,7 +124,7 @@
       </destination>
       <source>
         <publisher name="solaris">
-          <origin name="http://pkg.oracle.com/solaris/release"/>
+          <origin name="http://pkg.omniti.com/omnios/release"/>
           <!--
             If mirrors for this publisher need to be set, specify them here.
           -->
@@ -169,7 +169,7 @@
       </destination>
       <source>
         <publisher name="solaris">
-          <origin name="http://pkg.oracle.com/solaris/release/"/>
+          <origin name="http://pkg.omniti.com/omnios/release/"/>
           <!-- 
             If mirrors for this publisher are desired, they can be set here
           -->

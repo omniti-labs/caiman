@@ -43,9 +43,9 @@ DRY_RUN = True
 
 # allow the user to specify publisher information in environment variables.  If
 # not specified, fallback to default values.
-PKG_PUBLISHER = os.getenv("TRANSFERTESTPUB", "solaris")
+PKG_PUBLISHER = os.getenv("TRANSFERTESTPUB", "os.omniti.com")
 PKG_PUB_PATH = os.getenv("TRANSFERTESTPUBPATH",
-                         "http://ipkg.us.oracle.com/solaris11/dev")
+                         "http://pkg.omniti.com/omnios/dev")
 PKG_P5IFILE = os.getenv("TESTTRANSFERP5IFILE", "p5i/0/SUNW1394.p5i")
 PKG_FULL_P5I = os.path.join(PKG_PUB_PATH, PKG_P5IFILE)
 

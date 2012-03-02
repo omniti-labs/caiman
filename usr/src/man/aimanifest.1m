@@ -38,7 +38,7 @@ aimanifest validate
 .SH DESCRIPTION
 .sp
 .LP
-The \fBaimanifest\fR command creates a new XML manifest or modifies an existing one. While \fBaimanifest\fR can be used with any XML file that contains a valid \fB!DOCTYPE\fR reference to a DTD definition, it is intended for creating derived manifests used by the Automated Installer (AI). See \fIInstalling Oracle Solaris 11 Systems\fR for information about AI derived manifests.
+The \fBaimanifest\fR command creates a new XML manifest or modifies an existing one. While \fBaimanifest\fR can be used with any XML file that contains a valid \fB!DOCTYPE\fR reference to a DTD definition, it is intended for creating derived manifests used by the Automated Installer (AI). See \fIInstalling OmniOS 11 Systems\fR for information about AI derived manifests.
 .sp
 .LP
 The \fBaimanifest\fR command can be invoked multiple times to develop a manifest. The \fBAIM_MANIFEST\fR environment variable specifies the location of the manifest for \fBaimanifest\fR to modify. \fBAIM_MANIFEST\fR must be set. Each invocation of the \fBaimanifest\fR command with the \fBload\fR, \fBadd\fR, or \fBset\fR subcommand opens, modifies, and saves the \fBAIM_MANIFEST\fR file.
@@ -395,7 +395,7 @@ When the \fBaimanifest\fR call is in a shell script, values that contain quotati
 
 .sp
 .LP
-Most examples in this man page omit backslash escape characters because this man page does not assume that \fBaimanifest\fR is being called in a script or in a particular shell. See \fIInstalling Oracle Solaris 11 Systems\fR for information about AI derived manifests scripts.
+Most examples in this man page omit backslash escape characters because this man page does not assume that \fBaimanifest\fR is being called in a script or in a particular shell. See \fIInstalling OmniOS 11 Systems\fR for information about AI derived manifests scripts.
 .sp
 .LP
 The following forms of branches show how to construct a path to an element or element attribute.
@@ -913,4 +913,4 @@ Interface StabilityUncommitted
 installadm(1M), \fBpkg\fR(1)
 .sp
 .LP
-Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling Oracle Solaris 11 Systems\fR
+Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling OmniOS 11 Systems\fR

@@ -145,22 +145,22 @@ installadm delete-client \fImacaddr\fR
 .SH DESCRIPTION
 .sp
 .LP
-The Automated Installer (AI) is used to automate the installation of the Oracle Solaris OS on one or more SPARC and x86 systems over a network.
+The Automated Installer (AI) is used to automate the installation of the OmniOS system on one or more x86 systems over a network.
 .sp
 .LP
 The machine topography necessary to employ AI over the network is to have an install server, a DHCP server (this can be the same system as the install server), and the installation clients. On the install server, install services are set up to contain an AI boot image, which is provided to the clients in order for them to boot over the network, input specifications (AI manifests and derived manifests scripts), one of which will be selected for the client, and Service Management Facility (SMF) configuration profiles, zero or more of which will be selected for the client.
 .sp
 .LP
-The AI boot image content is published as the package \fBinstall-image/solaris-auto-install\fR, and is installed by the \fBcreate-service\fR subcommand. The \fBcreate-service\fR subcommand is also able to accept and unpack an AI ISO file to create the AI boot image.
+The AI boot image content is published as the package \fBinstall-image/omnios-auto-install\fR, and is installed by the \fBcreate-service\fR subcommand. The \fBcreate-service\fR subcommand is also able to accept and unpack an AI ISO file to create the AI boot image.
 .sp
 .LP
-Install services are created with a default AI manifest, but customized manifests or derived manifests scripts (hereafter called "scripts") can be added to an install service by using the \fBcreate-manifest\fR subcommand. See \fIInstalling Oracle Solaris 11 Systems\fR for information about how to create manifests and derived manifests scripts. The \fBcreate-manifest\fR subcommand also allows criteria to be specified, which are used to determine which manifest or script should be selected for an installation client. Criteria already associated with a manifest or script can be modified using the \fBset-criteria\fR subcommand.
+Install services are created with a default AI manifest, but customized manifests or derived manifests scripts (hereafter called "scripts") can be added to an install service by using the \fBcreate-manifest\fR subcommand. See \fIInstalling OmniOS 11 Systems\fR for information about how to create manifests and derived manifests scripts. The \fBcreate-manifest\fR subcommand also allows criteria to be specified, which are used to determine which manifest or script should be selected for an installation client. Criteria already associated with a manifest or script can be modified using the \fBset-criteria\fR subcommand.
 .sp
 .LP
 Manifests can include information such as a target device, partition information, a list of packages, and other parameters. Scripts contain commands that query a running AI client system and build a custom manifest based on the information it finds. When AI is invoked with a script, AI runs that script as its first task, to generate a manifest.
 .sp
 .LP
-When the client boots, a search is initiated for a manifest or script that matches the client's machine criteria. When a matching manifest or script is found, the client is installed with the Oracle Solaris release according to the specifications in the matching manifest file, or to the specifications in the manifest file derived from the matching script. Each client can use only one manifest or script.
+When the client boots, a search is initiated for a manifest or script that matches the client's machine criteria. When a matching manifest or script is found, the client is installed with the OmniOS release according to the specifications in the matching manifest file, or to the specifications in the manifest file derived from the matching script. Each client can use only one manifest or script.
 .sp
 .LP
 Each service has one default manifest or script. The default is used when the criteria of no other manifest or script matches the system being installed. Any manifest or script can be designated as the default. Any criteria associated with a default manifest or script become inactive and are not considered during manifest or script selection. If a different manifest or script is later made the default, the criteria of the former default manifest or script become active again. Manifests or scripts with no criteria associated with them can only be used as default manifests or scripts. Manifests or scripts without criteria become inactive when a different manifest or script is designated the default.
@@ -169,7 +169,7 @@ Each service has one default manifest or script. The default is used when the cr
 System configuration profiles are complementary to manifests and scripts in that they also contain specifications for an installation. In particular, profiles are used to specify configuration information such as user name, user password, time zone, host name, and IP address. Profiles can contain variables to get configuration parameters from the install server environment or from criteria specified in the \fBcreate-profile\fR subcommand. In this way, a single profile file can set different configuration parameters on different clients. See the "Examples" section.
 .sp
 .LP
-System configuration profiles are processed by \fBsmf\fR(5) and conform to document format \fBservice_bundle\fR(4). See \fBsysconfig\fR(1M) and \fIInstalling Oracle Solaris 11 Systems\fR for more information about system configuration profiles. Each client can use any number of system configuration profiles. A particular SMF property can be specified no more than once for each client system.
+System configuration profiles are processed by \fBsmf\fR(5) and conform to document format \fBservice_bundle\fR(4). See \fBsysconfig\fR(1M) and \fIInstalling OmniOS 11 Systems\fR for more information about system configuration profiles. Each client can use any number of system configuration profiles. A particular SMF property can be specified no more than once for each client system.
 .sp
 .LP
 If you want a specific client to use a specific install service, you can associate that client with the service by using the \fBcreate-client\fR subcommand. You can also use \fBcreate-client\fR to modify an existing client.
@@ -317,7 +317,7 @@ Displays the syntax for only the specified subcommand.
 .RS 4n
 This subcommand sets up a network boot image (net image) in the specified \fIimagepath\fR directory, and creates an install service that specifies how a client booted from the net image is installed.
 .sp
-The AI boot image content is published as the package \fBinstall-image/solaris-auto-install\fR. If the \fB-s\fR option is not specified, that package is installed from the first publisher in the system's publisher preference list that provides an instance of that package. The \fB-s\fR option accepts the \fBpkg\fR specification as a full FMRI or location of an image ISO file. The resulting net image is eventually located in \fIimagepath\fR. The net image enables client installations.
+The AI boot image content is published as the package \fBinstall-image/omnios-auto-install\fR. If the \fB-s\fR option is not specified, that package is installed from the first publisher in the system's publisher preference list that provides an instance of that package. The \fB-s\fR option accepts the \fBpkg\fR specification as a full FMRI or location of an image ISO file. The resulting net image is eventually located in \fIimagepath\fR. The net image enables client installations.
 .sp
 .LP
 Note the following specifications:
@@ -325,7 +325,7 @@ Note the following specifications:
 .TP
 .ie t \(bu
 .el o
-When the first install service of a given architecture is created on an install server, an alias of that service, \fBdefault-i386\fR or \fBdefault-sparc\fR, is automatically created. This default service is used for all installations to clients of that architecture that were not added to the install server explicitly with the \fBcreate-client\fR subcommand. To change the service aliased by the \fBdefault-\fIarch\fR\fR service, use the \fBset-service\fR subcommand.
+When the first install service of a given architecture is created on an install server, an alias of that service, \fBdefault-i386\fR, is automatically created. This default service is used for all installations to clients of that architecture that were not added to the install server explicitly with the \fBcreate-client\fR subcommand. To change the service aliased by the \fBdefault-\fIarch\fR\fR service, use the \fBset-service\fR subcommand.
 .sp
 If a \fBdefault-\fIarch\fR\fR alias is changed to a new install service and a local ISC DHCP configuration is found, this default alias bootfile is set as the default DHCP server-wide bootfile for that architecture.
 .RE
@@ -383,7 +383,7 @@ Optional: This new service is an alternate name for \fIexisting_service\fR.
 .ad
 .sp .6
 .RS 4n
-Optional: Selects a specific variant architecture. Legal values are \fBi386\fR or \fBsparc\fR. If not specified, the variant corresponding to the server's architecture is selected.
+Optional: Selects a specific variant architecture. Legal values are \fBi386\fR. If not specified, the variant corresponding to the server's architecture is selected.
 .sp
 The \fB-a\fR option only applies when the \fB-s\fR argument is a \fBpkg\fR(5) package.
 .RE
@@ -424,7 +424,7 @@ The path to an AI ISO image.
 .RE
 .sp
 .LP
-If \fB-s\fR is not specified, the \fBinstall-image/solaris-auto-install\fR package used is from either of:
+If \fB-s\fR is not specified, the \fBinstall-image/omnios-auto-install\fR package used is from either of:
 .RS +4
 .TP
 .ie t \(bu
@@ -1306,7 +1306,7 @@ The criteria values are determined by the AI client during startup.
 The following AI client system criteria can be specified for both manifests/scripts and profiles unless otherwise noted.
 .sp
 .LP
-See the "Examples" section to see how to specify criteria on the command line. For information about creating a criteria file, see \fIInstalling Oracle Solaris 11 Systems\fR.
+See the "Examples" section to see how to specify criteria on the command line. For information about creating a criteria file, see \fIInstalling OmniOS 11 Systems\fR.
 .sp
 
 .sp
@@ -1347,16 +1347,16 @@ Set up an install server and an x86 install service for the first time. The comm
 .sp
 .in +2
 .nf
-# \fBinstalladm create-service -n sol-11-i386-svc \e\fR
-\fB-s /export/isos/sol-11-i386.iso \e\fR
-\fB-i 172.0.0.10 -c 10 -d /export/images/soli386\fR
+# \fBinstalladm create-service -n omnios-11-i386-svc \e\fR
+\fB-s /export/isos/omnios-11-i386.iso \e\fR
+\fB-i 172.0.0.10 -c 10 -d /export/images/omniosi386\fR
 .fi
 .in -2
 .sp
 
 .sp
 .LP
-The AI ISO image is at \fB/export/isos/sol-11-i386.iso\fR. The command sets up a net image and an install service at \fB/export/images/soli386\fR that is based on the AI ISO image. This net image enables client installations.
+The AI ISO image is at \fB/export/isos/omnios-11-i386.iso\fR. The command sets up a net image and an install service at \fB/export/images/omniosi386\fR that is based on the AI ISO image. This net image enables client installations.
 
 .sp
 .LP
@@ -1366,51 +1366,13 @@ The starting IP address of 172.0.0.10 and ten IP addresses are added to the loca
 .LP
 Because this is the first \fBi386\fR service created, the \fBdefault-i386\fR service is automatically created and aliased to this service. The \fBdefault-i386\fR alias is operational, and a client booted via PXE will boot and install from the \fBdefault-i386\fR service.
 
-.LP
-\fBExample 2 \fRSet Up a New SPARC Install Service From an ISO File
 .sp
 .LP
-Set up a SPARC install service for the first time.
-
-.sp
-.in +2
-.nf
-# \fBinstalladm create-service -n sol-11-sparc-svc \e\fR
-\fB-s /export/isos/sol-11-sparc.iso \e\fR
-\fB-d /export/images/solsparc\fR
-.fi
-.in -2
-.sp
+On an i386 install server, this command sets up an i386 net image and install service named \fBmysvc\fR at the default image location, \fB/export/auto_install/mysvc\fR. The \fB-y\fR option provides confirmation that the default location is acceptable. Since the architecture is not specified, the service created is of the same architecture as the install server. This command assumes that a package repository on the \fBpkg publisher\fR list for the install server contains the \fBinstall-image/omnios-auto-install\fR package.
 
 .sp
 .LP
-The AI ISO image is at \fB/export/isos/sol-11-sparc.iso\fR. The command sets up a net image and an install service at \fB/export/images/solsparc\fR that is based on the AI ISO image. This net image enables client installations.
-
-.sp
-.LP
-Because this is the first SPARC service created, the \fBdefault-sparc\fR service is automatically created and aliased to this service. The \fBdefault-sparc\fR alias is operational, and a SPARC client will boot and install from the \fBdefault-sparc\fR service.
-
-.LP
-\fBExample 3 \fRSet Up an i386 Install Service From a Package Repository
-.sp
-.in +2
-.nf
-# \fBinstalladm create-service -y -n mysvc\fR
-.fi
-.in -2
-.sp
-
-.sp
-.LP
-On an i386 install server, this command sets up an i386 net image and install service named \fBmysvc\fR at the default image location, \fB/export/auto_install/mysvc\fR. The \fB-y\fR option provides confirmation that the default location is acceptable. Since the architecture is not specified, the service created is of the same architecture as the install server. This command assumes that a package repository on the \fBpkg publisher\fR list for the install server contains the \fBinstall-image/solaris-auto-install\fR package.
-
-.sp
-.LP
-To specify the creation of a SPARC service on this server, use the \fB-a\fR option.
-
-.sp
-.LP
-To specify the source of the \fBsolaris-auto-install\fR package, use the \fB-p\fR option. For example, use the following command to specify the \fBai-image\fR repository located at \fBhttp://example.company.com:4281\fR as the source of the \fBsolaris-auto-install\fR package:
+To specify the source of the \fBomnios-auto-install\fR package, use the \fB-p\fR option. For example, use the following command to specify the \fBai-image\fR repository located at \fBhttp://example.company.com:4281\fR as the source of the \fBomnios-auto-install\fR package:
 
 .sp
 .in +2
@@ -1444,14 +1406,14 @@ In this example, the command creates a client-specific setup for the system with
 \fBExample 5 \fRAdd a New Install Service Without Modifying the Default Service
 .sp
 .LP
-Use the following sample command to add a new service named \fBmy-sparc-service\fR, retaining existing services, and leaving the existing default unchanged.
+Use the following sample command to add a new service named \fBmy-i386-service\fR, retaining existing services, and leaving the existing default unchanged.
 
 .sp
 .in +2
 .nf
-# \fBinstalladm create-service -n my-sparc-service \e\fR
-\fB-s /export/isos/mysparc.iso \e\fR
-\fB-d /export/ai/mysparc-image\fR
+# \fBinstalladm create-service -n my-i386-service \e\fR
+\fB-s /export/isos/myi386.iso \e\fR
+\fB-d /export/ai/myi386-image\fR
 .fi
 .in -2
 .sp
@@ -1460,16 +1422,16 @@ Use the following sample command to add a new service named \fBmy-sparc-service\
 \fBExample 6 \fRAdd a New Install Service and Update the Default Service
 .sp
 .LP
-Use the following two sample commands to add a new service named \fBmy-sparc-service\fR, retaining existing services, and making the new service the default for SPARC clients.
+Use the following two sample commands to add a new service named \fBmy-i386-service\fR, retaining existing services, and making the new service the default for x86 clients.
 
 .sp
 .in +2
 .nf
-# \fBinstalladm create-service -n my-sparc-service \e\fR
-\fB-s /export/isos/mysparc.iso \e\fR
-\fB-d /export/ai/mysparc-image\fR
+# \fBinstalladm create-service -n my-i386-service \e\fR
+\fB-s /export/isos/myi386.iso \e\fR
+\fB-d /export/ai/myi386-image\fR
 # \fBinstalladm set-service \e\fR
-\fB-o aliasof=my-sparc-service default-sparc\fR
+\fB-o aliasof=my-i386-service default-i386\fR
 .fi
 .in -2
 .sp
@@ -1506,7 +1468,7 @@ Use the following sample command to add a derived manifests script named \fBmy_s
 
 .sp
 .LP
-See \fIInstalling Oracle Solaris 11 Systems\fR for information about how to create derived manifests scripts.
+See \fIInstalling OmniOS 11 Systems\fR for information about how to create derived manifests scripts.
 
 .LP
 \fBExample 9 \fRReplace the Default AI Manifest for an Install Service
@@ -1533,12 +1495,10 @@ Use the following sample command to list the install services on a local server.
 .in +2
 .nf
 $ \fBinstalladm list\fR
-Service Name     Alias Of         Status  Arch  Image Path 
-------------     --------         ------  ----  ---------- 
-default-i386     sol-11-i386-svc  on      x86   /export/images/soli386
-default-sparc    sol-11-sparc-svc on      Sparc /export/images/solsparc
-sol-11-i386-svc  -                on      x86   /export/images/soli386
-sol-11-sparc-svc -                on      Sparc /export/images/solsparc
+Service Name     Alias Of            Status  Arch  Image Path 
+------------     --------            ------  ----  ---------- 
+default-i386     omnios-11-i386-svc  on      x86   /export/images/omniosi386
+omnios-11-i386-svc  -                on      x86   /export/images/omniosi386
 .fi
 .in -2
 .sp
@@ -1575,8 +1535,6 @@ Manifest      Status    Criteria
 manifest2               arch = i86pc
                         mem  = 4096 MB - unbounded
 
-sparc_setup             arch = sun4v
-
 new_default   Default   (Ignored: mem = 2048 MB - 4095 MB)
 
 orig_default  Inactive  None
@@ -1592,12 +1550,6 @@ This example shows the following output:
 .ie t \(bu
 .el o
 A non-default manifest with criteria (\fBmanifest2\fR)
-.RE
-.RS +4
-.TP
-.ie t \(bu
-.el o
-A non-default script with criteria (\fBsparc_setup\fR)
 .RE
 .RS +4
 .TP
@@ -1623,8 +1575,6 @@ Use the following sample command to list the profiles on a local server.
 $ \fBinstalladm list -p\fR
 Service Name Profile
 ------------ -------
-sparc2       myprofile.xml
-             myprofile2.xml
 svc0817      profile3
 svc0819      profile4.xml
              newprofile
@@ -1829,7 +1779,7 @@ Using the same \fBhostname.xml\fR input file, the \fBmyhost2_hostname\fR profile
 
 .sp
 .LP
-The replacement tag, \fB{{AI_HOSTNAME}}\fR, is replaced with different values for each \fBcreate-profile\fR invocation because the \fBhostname\fR  criteria was used and substituted into the profile. For more information about using replacement tags with profiles, see \fIInstalling Oracle Solaris 11 Systems\fR.
+The replacement tag, \fB{{AI_HOSTNAME}}\fR, is replaced with different values for each \fBcreate-profile\fR invocation because the \fBhostname\fR  criteria was used and substituted into the profile. For more information about using replacement tags with profiles, see \fIInstalling OmniOS 11 Systems\fR.
 
 .LP
 \fBExample 20 \fRAdd Criteria To an Existing Manifest
@@ -1863,7 +1813,7 @@ Use the following sample command to replace the criteria of \fBmanifest2\fR of \
 
 .sp
 .LP
-See \fIInstalling Oracle Solaris 11 Systems\fR for information about the contents of the criteria XML file.
+See \fIInstalling OmniOS 11 Systems\fR for information about the contents of the criteria XML file.
 
 .LP
 \fBExample 22 \fRValidate Profile Files Under Development
@@ -1961,7 +1911,7 @@ Interface StabilityUncommitted
 aimanifest(1M), \fBsysconfig\fR(1M), \fBdhcp\fR(5), \fBdhcpd\fR(8), \fBsmf\fR(5), \fBservice_bundle\fR(4), \fBai_manifest\fR(4), \fBenviron\fR(5)
 .sp
 .LP
-Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling Oracle Solaris 11 Systems\fR
+Part\ III, \fIInstalling Using an Install Server,\fR in \fIInstalling OmniOS 11 Systems\fR
 .sp
 .LP
-\fITransitioning From Oracle Solaris 10 Custom JumpStart to Oracle Solaris 11 Automated Installer\fR
+\fITransitioning From Oracle Solaris 10 Custom JumpStart to OmniOS 11 Automated Installer\fR

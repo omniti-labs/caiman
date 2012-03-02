@@ -37,7 +37,7 @@ clean :=	TARGET = clean
 clobber :=	TARGET = clobber
 install :=	TARGET = install
 
-SUBDIRS = 	ja_JP zh_CN
+SUBDIRS = 	
 
 all:	$(MANPAGES1M) $(MANPAGES4)
 

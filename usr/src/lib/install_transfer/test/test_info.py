@@ -325,7 +325,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
 
         src = Source()
         pub = Publisher()
-        origin = Origin("http://pkg.oracle.com/solaris/release")
+        origin = Origin("http://pkg.omniti.com/omnios/release")
         pub.insert_children([origin])
         src.insert_children([pub])
 
@@ -341,7 +341,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -374,7 +374,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -406,7 +406,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -438,7 +438,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -469,7 +469,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -500,7 +500,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
                 pub = src_list[0].get_children("publisher", Publisher)
                 origin = pub[0].get_children("origin", Origin)
                 self.assertEqual(origin[0].origin,
-                    "http://pkg.oracle.com/solaris/release")
+                    "http://pkg.omniti.com/omnios/release")
 
                 dst_list = soft.get_children("destination", Destination)
                 self.assertEqual(len(dst_list), 1)
@@ -596,7 +596,7 @@ class TestIPSInfoFunctions(unittest.TestCase):
 
 
 class TestP5IInfoFunctions(unittest.TestCase):
-    DEF_P5I_FILE = "http://pkg.oracle.com/solaris/release/p5i/0/SUNW1394.p5i"
+    DEF_P5I_FILE = "http://pkg.omniti.com/omnios/release/p5i/0/SUNW1394.p5i"
 
     def setUp(self):
         InstallEngine._instance = None

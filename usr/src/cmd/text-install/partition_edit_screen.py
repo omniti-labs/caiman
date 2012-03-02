@@ -57,7 +57,7 @@ class PartEditScreen(BaseScreen):
     
     '''
     
-    PARTITION_PARAGRAPH = _("Oracle Solaris will be installed into the Solaris"
+    PARTITION_PARAGRAPH = _("OmniOS will be installed into the Solaris"
                             " partition. A partition's type can be changed"
                             " using the F5 key.\n\n"
                             "A partition's size can be increased "

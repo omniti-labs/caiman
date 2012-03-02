@@ -1426,7 +1426,7 @@ def main():
             traceback.print_exception(exc_type, exc_value, exc_tb, file=handle)
         err(_("%(err_msg)s. An unexpected error "
               "occurred, if the problem persists contact your "
-              "Oracle customer service representative to report "
+              "OmniTI customer service representative to report "
               "the problem. Details of the problem to report "
               "are stored in %(err_log)s\n") %
               {"err_msg": msg, "err_log": err_filename})

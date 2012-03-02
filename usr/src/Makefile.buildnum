@@ -72,7 +72,7 @@
 # changed in order to match the tag used there.
 #
 # With S11 FCS, the TRUNKID is frozen at 175
-TRUNKID= 175
+TRUNKID= 151
 
 #
 # The Solaris Update number. This will be set by the gatekeepers.

@@ -182,7 +182,7 @@ def setup_grub(svc_name, image_path, image_info, srv_address, menu_path,
 
         # Finally, add the 'install' entry
         menu.write("title %s Automated Install\n" %
-                   image_info.get("grub_title", "Solaris " + svc_name))
+                   image_info.get("grub_title", "Illumos " + svc_name))
         menu.write("\tkernel$ /%s/platform/i86pc/kernel/$ISADIR/unix -B "
                    "%sinstall=true,install_media=http://%s/%s,"
                    "install_service=%s,install_svc_address=%s\n" %

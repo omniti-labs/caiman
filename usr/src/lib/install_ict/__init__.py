@@ -66,7 +66,7 @@ SYS = 'sys'
 VFSTAB = 'etc/vfstab'
 
 # Variables associated with the package image
-DEF_REPO_URI = "http://pkg.oracle.com/solaris/release"
+DEF_REPO_URI = "http://pkg.omniti.com/omnios/release"
 PKG_CLIENT_NAME = "ICT"
 
 

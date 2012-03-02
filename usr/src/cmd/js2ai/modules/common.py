@@ -272,7 +272,7 @@ def validate(profile_name, manifest_path, manifest_filename, dtd_filename,
             with open(log_file, "w+") as f_handle:
                 f_handle.write(_("NOTE: The errors outputed in this file must "
                                  "be manually corrected before the resulting "
-                                 "file can be used by the Solaris "
+                                 "file can be used by the OmniOS "
                                  "automated installer. For information on the "
                                  "generated errors see installadm(1M) man "
                                  "page.\n\nOnce the errors have been corrected"

@@ -45,7 +45,7 @@ class AIPublishPackages(Checkpoint):
     """ class to publish the package image area into a repository
     """
 
-    SVC_NAME_ATTR = "com.oracle.install.service-name"
+    SVC_NAME_ATTR = "com.omniti.install.service-name"
     DEFAULT_ARG = {"pkg_name": None, "pkg_repo": None, "publisher": None}
 
     def __init__(self, name, arg=DEFAULT_ARG):

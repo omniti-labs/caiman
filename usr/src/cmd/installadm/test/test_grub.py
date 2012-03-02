@@ -49,13 +49,13 @@ class TestGrub(unittest.TestCase):
             "timeout=30\n"
             "min_mem64=0\n\n"
 
-            "title Oracle Solaris 11 11/11 Text Installer and command line\n"
+            "title OmniOS 11 Text Installer and command line\n"
             "\tkernel$ /%(name)s/platform/i86pc/kernel/$ISADIR/unix -B "
             "%(args)s,install_media=http://$serverIP:5555/%(path)s,"
             "install_service=%(name)s,install_svc_address=$serverIP:5555\n"
             "\tmodule$ /%(name)s/platform/i86pc/$ISADIR/boot_archive\n\n"
 
-            "title Oracle Solaris 11 11/11 Automated Install\n"
+            "title OmniOS 11 Automated Install\n"
             "\tkernel$ /%(name)s/platform/i86pc/kernel/$ISADIR/unix -B "
             "%(args)s,install=true,"
             "install_media=http://$serverIP:5555/%(path)s,"

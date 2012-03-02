@@ -46,7 +46,7 @@ class WelcomeScreen(BaseScreen):
     HEADER_TEXT = _("System Configuration Tool")
     WELCOME_TEXT = _("System Configuration Tool enables you to specify "
                      "the following configuration parameters for your "
-                     "newly-installed Oracle Solaris 11 system:\n")
+                     "newly-installed OmniOS 11 system:\n")
     NAVIPRO_TEXT = _("\nSystem Configuration Tool produces an SMF profile "
                      "file in %(scprof)s.\n\n"
                      "How to navigate through this tool:")

@@ -37,7 +37,6 @@ PYTHONSUBDIRS=	aimanifest \
 		ai-webserver \
 		auto-install \
 		distro_const \
-		gui-install \
 		installadm \
 		js2ai \
 		text-install

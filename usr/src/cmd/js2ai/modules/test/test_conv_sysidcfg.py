@@ -207,9 +207,9 @@ class Test_Sysidcfg_Valid(unittest.TestCase):
         """Tests sysidcfg name_service=LDAP {args..}"""
         data = self.default_dict_setup()
         payload = dict()
-        payload["domain_name"] = "us.oracle.com"
+        payload["domain_name"] = "omniti.com"
         payload["profile"] = "default"
-        payload["profile_server"] = "172.31.2.1"
+        payload["profile_server"] = "10.80.117.6"
         payload["proxy_dn"] = \
             "cn=proxyagent,ou=profile,dc=west,dc=example,dc=com"
         payload["proxy_password"] = "password"
@@ -226,9 +226,9 @@ class Test_Sysidcfg_Valid(unittest.TestCase):
         """Tests sysidcfg name_service=LDAP without opt args"""
         data = self.default_dict_setup()
         payload = dict()
-        payload["domain_name"] = "us.oracle.com"
+        payload["domain_name"] = "omniti.com"
         payload["profile"] = "default"
-        payload["profile_server"] = "172.31.2.1"
+        payload["profile_server"] = "10.80.117.6"
         key_value = KeyValues("name_service", ["LDAP", payload], 3)
         data[key_value.line_num] = key_value
         report = ConversionReport()

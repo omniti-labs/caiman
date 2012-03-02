@@ -80,7 +80,7 @@
       </destination>
       <source>
         <publisher name="solaris">
-          <origin name="http://pkg.oracle.com/solaris/release"/>
+          <origin name="http://pkg.omniti.com/omnios/release"/>
         </publisher>
       </source>
       <!--

@@ -24,8 +24,8 @@
 #
 
 set name=pkg.fmri \
-    value=pkg:/consolidation/install/install-redistributable@0.5.11,5.11-0.171
+    value=pkg:/consolidation/install/install-redistributable@0.5.11,5.11-0.151
 set name=pkg.renamed value=true
 set name=variant.arch value=$(ARCH)
-depend fmri=pkg:/consolidation/install/install-all@0.5.11,5.11-0.171 \
+depend fmri=pkg:/consolidation/install/install-all@0.5.11,5.11-0.151 \
     type=require

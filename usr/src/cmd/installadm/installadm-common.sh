@@ -62,11 +62,10 @@ SVCS=/bin/svcs
 TAIL=/bin/tail
 WC=/bin/wc
 
-DEFAULT_GRUB_TITLE="Oracle Solaris"
-VERSION="Solaris"
+DEFAULT_GRUB_TITLE="OmniOS"
+VERSION="Illumos"
 HTTP_PORT=5555
 
-SPARC_IMAGE="sparc_image"
 X86_IMAGE="x86_image"
 DOT_RELEASE=".release"
 DOT_IMAGE_INFO=".image_info"
