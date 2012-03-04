@@ -28,6 +28,7 @@
 #include <string.h>
 #include <sys/errno.h>
 #include <libintl.h>
+#include <ucontext.h>
 #include "liberrsvc.h"
 #include "liberrsvc_priv.h"
 #include "liberrsvc_defs.h"

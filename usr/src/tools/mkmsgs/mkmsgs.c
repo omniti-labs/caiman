@@ -157,6 +157,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <sys/param.h>
@@ -320,7 +321,7 @@ static	int	first_msg;		/* 0 = next msg is not the first to */
 static	char	*text_domain = DEFAULT_DOMAIN;
 
 
-
+int
 main(argc, argv)
 	int	argc;
 	char	**argv;
