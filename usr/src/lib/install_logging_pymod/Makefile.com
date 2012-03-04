@@ -1,4 +1,4 @@
-#
+
 # CDDL HEADER START
 #
 # The contents of this file are subject to the terms of the
@@ -18,21 +18,26 @@
 #
 # CDDL HEADER END
 #
-
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-include ../Makefile.com
-include ../../Makefile.lib.64
+LIBRARY		= _logger
 
-SOFLAGS		+= -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) -L/lib/64
+CPYTHONLIBS	= _logger.so
+
+include ../../Makefile.lib
+
+INCLUDE		= -I/usr/include/python2.6 -I../../logger
+
+CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS}
+
+dynamic:	$(CPYTHONLIB)
+
+all:		dynamic
 
 install:	all .WAIT \
-		$(ROOTADMINLIB64) .WAIT $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64) .WAIT $(INSTMSGS)
+		$(ROOTPYTHONVENDOR) \
+                $(ROOTPYTHONVENDORSOLINSTALL)
 
-install_test:	all .WAIT \
-		$(ROOTADMINLIB64) $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64)
+include ../../Makefile.targ

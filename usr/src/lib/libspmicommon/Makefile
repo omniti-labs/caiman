@@ -64,7 +64,7 @@ MSG_DOMAIN	= SUNW_INSTALL_LIBCOMMON
 
 all clean clobber install lint: $(SUBDIRS)
 
-install:	all .WAIT $(SUBDIRS) .WAIT $(INSTMSGS)
+install:	all .WAIT $(SUBDIRS) .WAIT msgs .WAIT $(INSTMSGS)
 
 install_test:	all .WAIT $(SUBDIRS) .WAIT $(INSTMSGS)
 

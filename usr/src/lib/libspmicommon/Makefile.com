@@ -69,14 +69,6 @@ static: $(LIBS)
 
 dynamic: $(DYNLIB) $(DYNLIBLINK)
 
-install:	all .WAIT \
-		$(ROOTADMINLIB) .WAIT $(ROOTADMINLIBS) $(ROOTADMINLIBDYNLIB) \
-		$(ROOTADMINLIBDYNLIBLINK) .WAIT msgs .WAIT
-
-install_test:	all .WAIT \
-		$(ROOTADMINLIB) $(ROOTADMINLIBS) $(ROOTADMINLIBDYNLIB) \
-		$(ROOTADMINLIBDYNLIBLINK) .WAIT
-
 common_proc:	objs/$(ARCH)/$(LIBRARY)
 		$(CC) -o objs/$(ARCH)/$@ -DMODULE_TEST $@.c \
 			objs/$(ARCH)/common_proc.o \

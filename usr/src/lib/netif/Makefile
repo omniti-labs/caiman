@@ -26,63 +26,53 @@
 # software library makefile (if_nametoindex, if_indextoname, if_nameindex)
 #
 
-LIBRARY	= netif
+SUBDIRS         = $(MACH)
+SUBDIRS         += $(MACH64)
 
-OBJECTS	= netif.o
+all :=          TARGET= all
+clean :=        TARGET= clean
+clobber :=      TARGET= clobber
+install :=      TARGET= install
+lint :=         TARGET= lint
 
-CPYTHONLIBS = netif.so
+.KEEP_STATE:
+
+all clean clobber install lint: $(SUBDIRS)
 
 PRIVHDRS = netif.h
 
 EXPHDRS =
-
 HDRS		= $(EXPHDRS) $(PRIVHDRS)
 
 include ../Makefile.lib
 
 PYVERSION=python2.6
-PYINCLUDE=-I/usr/include/$(PYVERSION)
-
-INCLUDE		 = $(PYINCLUDE) \
-		   -I$(ROOTINCADMIN)
-
-CPPFLAGS	+= $(INCLUDE) -D$(ARCH)
-CFLAGS		+= $(DEBUG_CFLAGS) -Xa $(CPPFLAGS) -xc99
-LDFLAGS		+=
-SOFLAGS		+= -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-L$(ROOTUSRLIB) -R$(ROOTUSRLIB:$(ROOT)%=%) -lsocket -l$(PYVERSION) \
-		-Mmapfile-vers
-
 PYMODULES=	
 
 PYCMODULES=	$(PYMODULES:%.py=%.pyc)
 ROOTPYMODULES=  $(PYMODULES:%=$(ROOTPYTHONVENDORINSTALLAI)/%)
 ROOTPYCMODULES= $(PYCMODULES:%=$(ROOTPYTHONVENDORINSTALLAI)/%)
 
-static: $(OBJECTS)
-
-dynamic: $(CPYTHONLIB)
-
-all: dynamic
-
 install_h:
 
-install:	all .WAIT \
+install:	all .WAIT $(SUBDIRS) .WAIT \
 		$(ROOTPYTHONVENDOR) \
 		$(ROOTPYTHONVENDORINSTALL) \
-		$(ROOTPYTHONVENDORINSTALLLIBS) \
-		$(ROOTPYTHONVENDORINSTALLMODS) \
 		$(ROOTPYTHONVENDORINSTALLCMODS) \
+		$(ROOTPYTHONVENDORINSTALLMODS) \
 		$(ROOTPYMODULES) \
 		$(ROOTPYCMODULES)
-
-lint:  $(SRCS) $(HDRS)
-	$(LINT.c) $(SRCS)
 
 python:
 	$(PYTHON) -m compileall -l $(@D)
 
-cstyle:	$(SRCS) $(PRIVHDRS) $(PUBHDRS)
-	$(CSTYLE) $(SRCS) $(PRIVHDRS) $(PUBHDRS)
+all:	$(HDRS) .WAIT python .WAIT $(SUBDIRS)
+
+lint:
+
+$(SUBDIRS):	FRC
+	@cd $@; pwd; $(MAKE) $(TARGET)
+
+FRC:
 
 include ../Makefile.targ

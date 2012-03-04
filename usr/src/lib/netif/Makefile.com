@@ -20,19 +20,45 @@
 #
 
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+#
+# Internet Protocol network interface names and interface indexes 
+# software library makefile (if_nametoindex, if_indextoname, if_nameindex)
 #
 
-include ../Makefile.com
-include ../../Makefile.lib.64
+LIBRARY	= netif
 
-SOFLAGS		+= -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) -L/lib/64
+OBJECTS	= netif.o
 
-install:	all .WAIT \
-		$(ROOTADMINLIB64) .WAIT $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64) .WAIT $(INSTMSGS)
+CPYTHONLIBS = netif.so
 
-install_test:	all .WAIT \
-		$(ROOTADMINLIB64) $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64)
+PRIVHDRS = netif.h
+
+include ../../Makefile.lib
+
+CLOBBERFILES = $(CPYTHONLIB)
+CLEANFILES   = $(CLOBBERFILES)
+
+SRCDIR		= ..
+PYVERSION=python2.6
+PYINCLUDE=-I/usr/include/$(PYVERSION)
+
+INCLUDE		 = $(PYINCLUDE) \
+		   -I$(ROOTINCADMIN)
+
+CPPFLAGS	+= $(INCLUDE) -D$(ARCH)
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa $(CPPFLAGS) -xc99
+
+static: $(LIBS)
+
+dynamic: $(CPYTHONLIB)
+
+all: dynamic
+
+lint:  $(SRCS) $(HDRS)
+	$(LINT.c) $(SRCS)
+
+cstyle:	$(SRCS) $(PRIVHDRS) $(PUBHDRS)
+	$(CSTYLE) $(SRCS) $(PRIVHDRS) $(PUBHDRS)
+
+include ../../Makefile.targ

@@ -20,19 +20,17 @@
 #
 
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2011 OmniTI Computer Consulting, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
 include ../Makefile.com
-include ../../Makefile.lib.64
 
-SOFLAGS		+= -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) -L/lib/64
+CPPFLAGS        += -D_FILE_OFFSET_BITS=64
+SOFLAGS         += -L$(ROOTUSRLIB) -L$(ROOTADMINLIB) \
+		-R$(ROOTUSRLIB:$(ROOT)%=%)  \
+		-R$(ROOTADMINLIB:$(ROOT)%=%) -L/lib \
+		-lpython2.6 -lm -lc -zdefs
 
-install:	all .WAIT \
-		$(ROOTADMINLIB64) .WAIT $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64) .WAIT $(INSTMSGS)
-
-install_test:	all .WAIT \
-		$(ROOTADMINLIB64) $(ROOTADMINLIBS64) $(ROOTADMINLIBDYNLIB64) \
-		$(ROOTADMINLIBDYNLIBLINK64)
+install:	dynamic .WAIT \
+		$(ROOTPYTHONVENDORINSTALLLIBS)
