@@ -51,6 +51,7 @@ file path=usr/lib/python2.6/vendor-packages/osol_install/__init__.pyc \
     mode=0444
 file path=usr/lib/python2.6/vendor-packages/osol_install/install_utils.py
 file path=usr/lib/python2.6/vendor-packages/osol_install/install_utils.pyc
+file path=usr/lib/python2.6/vendor-packages/osol_install/64/libzoneinfo.so
 file path=usr/lib/python2.6/vendor-packages/osol_install/libzoneinfo.so
 file path=usr/lib/python2.6/vendor-packages/terminalui/__init__.py mode=0444
 file path=usr/lib/python2.6/vendor-packages/terminalui/__init__.pyc mode=0444

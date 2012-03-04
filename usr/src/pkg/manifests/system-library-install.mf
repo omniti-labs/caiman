@@ -32,6 +32,12 @@ set name=variant.arch value=$(ARCH)
 set name=variant.opensolaris.zone value=global value=nonglobal
 dir  path=usr group=sys
 dir  path=usr/lib
+link path=usr/lib/$(ARCH64)/libaiscf.so target=libaiscf.so.1
+file path=usr/lib/$(ARCH64)/libaiscf.so.1
+link path=usr/lib/$(ARCH64)/liberrsvc.so target=liberrsvc.so.1
+file path=usr/lib/$(ARCH64)/liberrsvc.so.1
+link path=usr/lib/$(ARCH64)/liblogger.so target=liblogger.so.1
+file path=usr/lib/$(ARCH64)/liblogger.so.1
 link path=usr/lib/libaiscf.so target=libaiscf.so.1
 file path=usr/lib/libaiscf.so.1
 link path=usr/lib/liberrsvc.so target=liberrsvc.so.1
@@ -41,12 +47,14 @@ file path=usr/lib/liblogger.so.1
 dir  path=usr/lib/python2.6
 dir  path=usr/lib/python2.6/vendor-packages
 dir  path=usr/lib/python2.6/vendor-packages/osol_install
+file path=usr/lib/python2.6/vendor-packages/osol_install/64/_liberrsvc.so
 file path=usr/lib/python2.6/vendor-packages/osol_install/_liberrsvc.so
 file path=usr/lib/python2.6/vendor-packages/osol_install/errsvc.py
 file path=usr/lib/python2.6/vendor-packages/osol_install/errsvc.pyc
 file path=usr/lib/python2.6/vendor-packages/osol_install/liberrsvc.py
 file path=usr/lib/python2.6/vendor-packages/osol_install/liberrsvc.pyc
 dir  path=usr/lib/python2.6/vendor-packages/solaris_install
+file path=usr/lib/python2.6/vendor-packages/solaris_install/64/_logger.so
 file path=usr/lib/python2.6/vendor-packages/solaris_install/__init__.py
 file path=usr/lib/python2.6/vendor-packages/solaris_install/__init__.pyc
 file path=usr/lib/python2.6/vendor-packages/solaris_install/_logger.so
@@ -233,6 +241,8 @@ file path=usr/share/install/software.dtd.$(DTD_VERSION_SOFTWARE) group=sys \
 file path=usr/share/install/target.dtd.$(DTD_VERSION_TARGET) group=sys mode=0444
 dir  path=usr/snadm
 dir  path=usr/snadm/lib
+link path=usr/snadm/lib/$(ARCH64)/libspmicommon.so target=libspmicommon.so.1
+file path=usr/snadm/lib/$(ARCH64)/libspmicommon.so.1
 link path=usr/snadm/lib/libspmicommon.so target=libspmicommon.so.1
 file path=usr/snadm/lib/libspmicommon.so.1
 license cr_Sun license=cr_Sun
