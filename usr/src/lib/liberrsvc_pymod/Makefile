@@ -55,6 +55,8 @@ python:
 
 all:		$(HDRS) .WAIT python $(SUBDIRS)
 
+install_h:
+
 install:	all .WAIT $(SUBDIRS) .WAIT \
 		$(ROOTPYTHONVENDOR) \
 		$(ROOTPYTHONVENDORINSTALL) \

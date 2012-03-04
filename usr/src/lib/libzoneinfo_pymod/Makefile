@@ -35,6 +35,8 @@ include ../Makefile.lib
 
 all clean clobber install lint: $(SUBDIRS)
 
+install_h:
+
 install:	all .WAIT \
 		$(ROOTPYTHONVENDOR) \
 		$(ROOTPYTHONVENDORINSTALL) .WAIT $(SUBDIRS)
