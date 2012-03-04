@@ -25,18 +25,11 @@
 # AI multicast DNS (mdns) software library makefile
 #
 
-SUBDIRS		= $(MACH)
-SUBDIRS		+= $(MACH64)
+LIBRARY	= libaimdns
 
-all :=		TARGET= all
-clean :=	TARGET= clean
-clobber :=	TARGET= clobber
-install :=	TARGET= install
-lint :=		TARGET= lint
+OBJECTS	= libaimdns.o
 
-.KEEP_STATE:
-
-all clean clobber install lint: $(SUBDIRS)
+CPYTHONLIBS = libaimdns.so
 
 PRIVHDRS =
 
@@ -44,38 +37,24 @@ EXPHDRS =
 
 HDRS		= $(EXPHDRS) $(PRIVHDRS)
 
-include ../Makefile.lib
+include ../../Makefile.lib
 
-PYMODULES=	
+PYVERSION=python2.6
+PYINCLUDE=-I/usr/include/$(PYVERSION)
 
-PYCMODULES=	$(PYMODULES:%.py=%.pyc)
-ROOTPYMODULES=  $(PYMODULES:%=$(ROOTPYTHONVENDORINSTALL)/%)
-ROOTPYCMODULES= $(PYCMODULES:%=$(ROOTPYTHONVENDORINSTALL)/%)
+SRCDIR		= ..
+INCLUDE		 = $(PYINCLUDE) \
+		   -I$(ROOTINCADMIN)
+
+CPPFLAGS       += $(INCLUDE) -D$(ARCH)
+CFLAGS		+= $(DEBUG_CFLAGS) -Xa $(CPPFLAGS)
+
+static:
+
+dynamic: $(CPYTHONLIB)
+
+all: dynamic
 
 install_h:
 
-install:	all .WAIT $(SUBDIRS) .WAIT \
-		$(ROOTPYTHONVENDOR) \
-		$(ROOTPYTHONVENDORINSTALL) \
-		$(ROOTPYTHONVENDORINSTALLMODS) \
-		$(ROOTPYTHONVENDORINSTALLCMODS) \
-		$(ROOTPYMODULES) \
-		$(ROOTPYCMODULES)
-
-all:	$(HDRS) .WAIT python .WAIT $(SUBDIRS)
-
-lint:	$(SRCS) $(HDRS)
-	$(LINT.c) $(SRCS)
-
-python:
-	$(PYTHON) -m compileall -l $(@D)
-
-cstyle:	$(SRCS) $(PRIVHDRS) $(PUBHDRS)
-	$(CSTYLE) $(SRCS) $(PRIVHDRS) $(PUBHDRS)
-
-$(SUBDIRS):	FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
-
-include ../Makefile.targ
+include ../../Makefile.targ
