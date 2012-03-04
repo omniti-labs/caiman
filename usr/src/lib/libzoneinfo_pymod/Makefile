@@ -22,38 +22,28 @@
 # Use is subject to license terms.
 #
 
-LIBRARY		= libzoneinfo
+SUBDIRS         = $(MACH)
+SUBDIRS         += $(MACH64)
 
-OBJECTS		= libzoneinfo.o
-
-CPYTHONLIBS	= libzoneinfo.so
-
-PRIVHDRS	=
-EXPHDRS		=
-HDRS		= $(EXPHDRS) $(PRIVHDRS)
+all :=          TARGET= all
+clean :=        TARGET= clean
+clobber :=      TARGET= clobber
+install :=      TARGET= install
+lint :=         TARGET= lint
 
 include ../Makefile.lib
 
-INCLUDE		= -I/usr/include/python2.6 -I/usr/include/libzoneinfo
-
-CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master) -D_FILE_OFFSET_BITS=64
-CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} 
-SOFLAGS		+= -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-lzoneinfo -lpython2.6
-
-static:	
-
-dynamic:	$(CPYTHONLIB)
-
-all:		$(HDRS) dynamic
-
-install_h:
+all clean clobber install lint: $(SUBDIRS)
 
 install:	all .WAIT \
 		$(ROOTPYTHONVENDOR) \
-		$(ROOTPYTHONVENDORINSTALL) \
-		$(ROOTPYTHONVENDORINSTALLLIBS) 
+		$(ROOTPYTHONVENDORINSTALL) .WAIT $(SUBDIRS)
 
 lint:		lint_SRCS
+
+$(SUBDIRS):	FRC
+	cd $@; pwd; $(MAKE) $(TARGET)
+
+FRC:
 
 include ../Makefile.targ

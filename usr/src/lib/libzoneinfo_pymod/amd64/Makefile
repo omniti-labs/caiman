@@ -20,34 +20,16 @@
 #
 
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2011 OmniTI Computer Consulting, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
 
-LIBRARY		= _libaiscf
+include ../Makefile.com
+include ../../Makefile.lib.64
 
-OBJECTS		= libaiscf_instance.o libaiscf_service.o  \
-			  libaiscf_backend.o
+CPPFLAGS        += -D_LARGEFILE64_SOURCE
+SOFLAGS         += -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) \
+		-lzoneinfo -lpython2.6
 
-CPYTHONLIBS	= _libaiscf.so 
-
-include ../../Makefile.lib
-
-CLOBBERFILES	= $(CPYTHONLIB)
-CLEANFILES	= $(CLOBBERFILES)
-
-SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6
-
-CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master)
-CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -xc99
-
-all:		dynamic
-
-static:
-
-dynamic:	$(CPYTHONLIB)
-
-install_h:
-
-include ../../Makefile.targ
+install:	dynamic .WAIT \
+		$(ROOTPYTHONVENDORINSTALLLIBS64)
