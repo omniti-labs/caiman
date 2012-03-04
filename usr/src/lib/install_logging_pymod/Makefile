@@ -52,11 +52,11 @@ static:
 python:
 	$(PYTHON) -d -m compileall -l $(@D)
 
-all:		$(HDRS) .WAIT python $(SUBDIRS)
+all:		$(HDRS) .WAIT python .WAIT $(SUBDIRS)
 
 install_h:
 
-install:	all .WAIT \
+install:	all .WAIT $(SUBDIRS) .WAIT \
 		$(ROOTPYTHONVENDOR) \
                 $(ROOTPYTHONVENDORSOLINSTALL) \
 		$(ROOTPYTHONVENDORSOLINSTALLMODS) \

@@ -36,8 +36,4 @@ dynamic:	$(CPYTHONLIB)
 
 all:		dynamic
 
-install:	all .WAIT \
-		$(ROOTPYTHONVENDOR) \
-                $(ROOTPYTHONVENDORSOLINSTALL)
-
 include ../../Makefile.targ
