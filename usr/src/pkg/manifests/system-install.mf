@@ -85,7 +85,7 @@ dir  path=var/log group=sys
 dir  path=var/log/install group=sys
 dir  path=var/sadm group=sys
 dir  path=var/sadm/system group=sys
-link path=var/sadm/system/logs target=../../log/install
+dir  path=var/sadm/system/logs group=sys
 license cr_Sun license=cr_Sun
 depend type=require fmri=library/python-2/python-extra-26
 
