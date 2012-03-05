@@ -260,8 +260,8 @@ PKGDEP_TOKENS= $(PKGDEP_TOKENS_$(PKGMACH))
 $(PDIR)/install-all.mog:= PKGDEP_TYPE= group
 $(PDIR)/install-incorporation.mog:= PKGDEP_TYPE= incorporate
 
-PKGDEP_INCORP= \
-	depend fmri=consolidation/install/install-incorporation type=require
+PKGDEP_INCORP=
+#	depend fmri=consolidation/install/install-incorporation type=require
 
 #
 # All packaging build products should go into $(PDIR), so they don't
@@ -285,7 +285,8 @@ PROC_PKGS= $(PKGS:%=$(PDIR)/%.mog)
 # build rules and dependencies.  The synthetic and real packages use
 # different sets of transforms and macros for pkgmogrify.
 #
-SYNTH_PKGS= install-incorporation install-redist install-all
+SYNTH_PKGS=
+# install-incorporation install-redist install-all
 DEP_SYNTH_PKGS= $(SYNTH_PKGS:%=$(PDIR)/%.dep)
 PROC_SYNTH_PKGS= $(SYNTH_PKGS:%=$(PDIR)/%.mog)
 
