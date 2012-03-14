@@ -27,12 +27,16 @@
 information from a given zpool.
 """
 import ctypes as C
+import sys
 
 from solaris_install.target.libnvpair.cstruct import nvlistp
 from solaris_install.target.libnvpair import nvl
 
 # ctypes handle to libzfs.so
-_LIBZFS = C.CDLL("/usr/lib/libzfs.so", use_errno=True)
+if sys.maxint == 2147483647:
+    _LIBZFS = C.CDLL("/usr/lib/libzfs.so", use_errno=True)
+else:
+    _LIBZFS = C.CDLL("/usr/lib/64/libzfs.so", use_errno=True)
 
 
 # define an empty structure and pointer to use as return and argument types for

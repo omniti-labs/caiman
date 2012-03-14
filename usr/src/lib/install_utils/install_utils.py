@@ -556,7 +556,10 @@ def encrypt_password(plaintext, salt=None, alt_root="/", username=""):
             ("pw_shell", string)
         ]
 
-    _LIBC = C.CDLL(os.path.join(alt_root, "usr/lib/libc.so"))
+    if sys.maxint == 2147483647:
+        _LIBC = C.CDLL(os.path.join(alt_root, "usr/lib/libc.so"))
+    else:
+        _LIBC = C.CDLL(os.path.join(alt_root, "usr/lib/64/libc.so"))
 
     getpwnam = _LIBC.getpwnam
     getpwnam.argtypes = ((string),)

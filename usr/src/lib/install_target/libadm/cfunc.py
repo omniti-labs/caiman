@@ -26,9 +26,13 @@
 """ C functions from libadm(3LIB).
 """
 import ctypes as C
+import sys
 from solaris_install.target.libadm.cstruct import extvtocp
 
-_LIBADM = C.CDLL("/usr/lib/libadm.so", use_errno=True)
+if sys.maxint == 2147483647:
+    _LIBADM = C.CDLL("/usr/lib/libadm.so", use_errno=True)
+else:
+    _LIBADM = C.CDLL("/usr/lib/64/libadm.so", use_errno=True)
 
 # function mapping.  each line is:  (function name, return type, args)
 _funcs = [

@@ -28,8 +28,12 @@ Used to determine if someone is logged in to the console.
 '''
 
 import ctypes as C
+import sys
 
-_LIBC = C.CDLL("/usr/lib/libc.so", use_errno=True)
+if sys.maxint == 2147483647:
+    _LIBC = C.CDLL("/usr/lib/libc.so", use_errno=True)
+else:
+    _LIBC = C.CDLL("/usr/lib/64/libc.so", use_errno=True)
 
 # Definitions for ut_type
 UT_TYPE = (

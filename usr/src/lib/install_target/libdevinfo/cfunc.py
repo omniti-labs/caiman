@@ -26,10 +26,14 @@
 """ C functions from libdevinfo(3LIB).
 """
 import ctypes as C
+import sys
 
 from solaris_install.target.libdevinfo.cstruct import BootDevp
 
-_LIBDEVINFO = C.CDLL("/usr/lib/libdevinfo.so")
+if sys.maxint == 2147483647:
+    _LIBDEVINFO = C.CDLL("/usr/lib/libdevinfo.so")
+else:
+    _LIBDEVINFO = C.CDLL("/usr/lib/64/libdevinfo.so")
 
 # function mapping.  each line is:  (function name, return type, args)
 _funcs = [

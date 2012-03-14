@@ -24,11 +24,15 @@
 # Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
 #
 import ctypes as C
+import sys
 
 from solaris_install.target.libbe.cstruct import BENodeList, BENodeListp
 from solaris_install.target.libnvpair.cstruct import nvlistp
 
-_LIBBE = C.CDLL("/usr/lib/libbe.so")
+if sys.maxint == 2147483647:
+    _LIBBE = C.CDLL("/usr/lib/libbe.so")
+else:
+    _LIBBE = C.CDLL("/usr/lib/64/libbe.so")
 
 # function mapping.  each line is:  (function name, return type, args)
 _funcs = [

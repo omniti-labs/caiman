@@ -49,8 +49,12 @@ For example:
     # you need just one function to clean up an nvlist:
     from solaris_install.target.libnvpair.cfunc import nvlist_free
     import ctypes as C
+    import sys
 
-    _MYLIB = C.CDLL("/usr/lib/libmylib.so", use_errno=True)
+    if sys.maxint == 2147483647:
+        _MYLIB = C.CDLL("/usr/lib/libmylib.so", use_errno=True)
+    else:
+        _MYLIB = C.CDLL("/usr/lib/64/libmylib.so", use_errno=True)
 
     def myfinalizer(nvlist):
         print "death to this NVList!"

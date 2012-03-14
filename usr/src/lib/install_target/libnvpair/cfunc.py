@@ -52,10 +52,14 @@ nvpair_type_is_array
 """
 
 import ctypes as C
+import sys
 
 from solaris_install.target.libnvpair.cstruct import nvpairp, nvlistp
 
-_LIBNVPAIR = C.CDLL("/usr/lib/libnvpair.so", use_errno=True)
+if sys.maxint == 2147483647:
+    _LIBNVPAIR = C.CDLL("/usr/lib/libnvpair.so", use_errno=True)
+else:
+    _LIBNVPAIR = C.CDLL("/usr/lib/64/libnvpair.so", use_errno=True)
 
 # function mapping.  each line is:  (function name, return type, args)
 _funcs = [

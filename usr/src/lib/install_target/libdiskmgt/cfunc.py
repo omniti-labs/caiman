@@ -27,10 +27,14 @@
 C functions from undocumented /usr/lib/libdiskmgt.so
 """
 import ctypes as C
+import sys
 from solaris_install.target.libdiskmgt.cstruct import dm_desc, dm_cstring
 from solaris_install.target.libnvpair import nvl
 
-_LIBDISKMGT = C.CDLL("/usr/lib/libdiskmgt.so", use_errno=True)
+if sys.maxint == 2147483647:
+    _LIBDISKMGT = C.CDLL("/usr/lib/libdiskmgt.so", use_errno=True)
+else:
+    _LIBDISKMGT = C.CDLL("/usr/lib/64/libdiskmgt.so", use_errno=True)
 
 # function mapping.  each line is:  (function name, return type, args)
 _funcs = [
