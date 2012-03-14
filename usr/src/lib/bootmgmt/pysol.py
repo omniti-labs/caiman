@@ -27,7 +27,7 @@
 from ctypes import *
 import gettext
 import errno
-import platform
+import sys
 import os
 
 try:
@@ -55,7 +55,7 @@ FSTYPSZ = 16
 MAX_PATH = 1024
 
 _libc = CDLL('libc.so', use_errno=True)
-_platwidth = platform.architecture()[0][:2]
+_platwidth = ('32' if sys.maxint == 2147483647 else '64')
 _libc.fopen.restype = c_void_p
 _libc.free.argtypes = [c_void_p]
 _libc.free.restype = None
