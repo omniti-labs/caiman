@@ -25,7 +25,8 @@
 
 include $(SRC)/Makefile.master
 
-SUBDIRS=	install_boot \
+SUBDIRS=	bootmgmt \
+		install_boot \
 		install_common \
 		install_configuration \
 		install_doc \
