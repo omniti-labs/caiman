@@ -85,6 +85,10 @@
 		exec='/lib/svc/method/net-physical unconfigure'
 		timeout_seconds='20' />
 
+	<property_group name='startd' type='framework'>
+		<propval name='duration' type='astring' value='transient' />
+	</property_group>
+
 	<property_group name='general' type='framework'>
 		<!-- to start/stop/change network management -->
 		<propval name='action_authorization' type='astring'
