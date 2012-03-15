@@ -94,6 +94,21 @@
   <name>usr/sbin/svccfg</name>
   <name>usr/sbin/prtconf</name>
   <name>usr/sbin/amd64/prtconf</name>
+
+  <name>usr/bin/sh</name>
+  <name>usr/bin/hostname</name>
+  <name>usr/sbin/ipsecalgs</name>
+  <name>usr/sbin/fcadm</name>
+  <name>usr/lib/sysevent/syseventd</name>
+  <name>usr/lib/libgcc_s.so.1</name>
+  <name>usr/lib/libxml2.so</name>
+  <name>usr/lib/libxml2.so.2</name>
+  <name>usr/lib/libxml2.so.2.7.8</name>
+  <name>usr/lib/libz.so.1.2.6</name>
+  <name>usr/lib/libipsecutil.so.1</name>
+  <name>usr/lib/libHBAAPI.so.1</name>
+  <name>usr/lib/libfcoe.so.1</name>
+
   <name>usr/lib/libsmbios.so.1</name>
   <name>usr/lib/libtecla.so.1</name>
   <name>usr/lib/libl.so.1</name>
@@ -170,6 +185,7 @@
   <name>usr/lib/libfstyp.so</name>
   <name>usr/lib/libz.so</name>
   <name>usr/lib/libz.so.1</name>
+  <name>usr/bin/i86/ksh</name>
   <name>usr/bin/i86/ksh93</name>
   <name>usr/lib/isaexec</name>
   <name>usr/lib/libast.so.1</name>
