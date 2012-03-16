@@ -31,4 +31,6 @@ SOFLAGS         += -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
 		-lzoneinfo -lpython2.6
 
 install:	dynamic .WAIT \
+		$(ROOTPYTHONVENDOR) \
+		$(ROOTPYTHONVENDORINSTALL) \
 		$(ROOTPYTHONVENDORINSTALLLIBS)

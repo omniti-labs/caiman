@@ -50,11 +50,6 @@ all:		$(HDRS) dynamic
 
 install_h:
 
-install:	all .WAIT \
-		$(ROOTPYTHONVENDOR) \
-		$(ROOTPYTHONVENDORINSTALL) \
-		$(ROOTPYTHONVENDORINSTALLLIBS) 
-
 lint:		lint_SRCS
 
 include ../../Makefile.targ
