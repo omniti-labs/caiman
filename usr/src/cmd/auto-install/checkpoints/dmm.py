@@ -71,7 +71,7 @@ SYSTEM_CONF = "/etc/netboot/system.conf"
 
 # Commands
 
-DEVPROP = "/usr/sbin/devprop"
+DEVPROP = "/sbin/devprop"
 ISAINFO = "/usr/bin/isainfo"
 SU = "/usr/bin/su"
 TEST = "/usr/bin/test"

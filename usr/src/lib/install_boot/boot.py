@@ -406,7 +406,7 @@ class SystemBootMenu(BootMenu):
             Returns: A string value associated with propname or None
         """
         propname_val = None
-        cmd = ["/usr/sbin/devprop", "-s", propname]
+        cmd = ["/sbin/devprop", "-s", propname]
         p = Popen.check_call(cmd,
             stdout=Popen.STORE,
             stderr=Popen.STORE,

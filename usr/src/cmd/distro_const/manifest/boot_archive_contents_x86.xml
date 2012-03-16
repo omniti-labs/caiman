@@ -40,7 +40,6 @@
   <name>usr/sbin/biosdev</name>
   <name>usr/sbin/bootadm</name>
   <name>usr/sbin/cryptoadm</name>
-  <name>usr/sbin/devprop</name>
   <name>usr/sbin/dhcpagent</name>
   <name>usr/sbin/dhcpinfo</name>
   <name>usr/sbin/dladm</name>
