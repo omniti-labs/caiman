@@ -219,12 +219,15 @@ class ScrollWindow(InnerWindow):
             abs_y, abs_x = self.latest_yx
         self._update_scroll_bar()
 
-        self.window.noutrefresh(self.current_line[0],
-                                self.current_line[1],
-                                self.area.y_loc + abs_y,
-                                self.area.x_loc + abs_x,
-                                self.area.lower_right_y + abs_y,
-                                self.area.lower_right_x + abs_x)
+        try:
+            self.window.noutrefresh(self.current_line[0],
+                                    self.current_line[1],
+                                    self.area.y_loc + abs_y,
+                                    self.area.x_loc + abs_x,
+                                    self.area.lower_right_y + abs_y,
+                                    self.area.lower_right_x + abs_x)
+				except:
+					  None
 
         for obj in self.objects:
             obj.deep_refresh(self.area.y_loc + abs_y, self.area.x_loc + abs_x)
