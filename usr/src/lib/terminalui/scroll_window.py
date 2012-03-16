@@ -226,8 +226,8 @@ class ScrollWindow(InnerWindow):
                                     self.area.x_loc + abs_x,
                                     self.area.lower_right_y + abs_y,
                                     self.area.lower_right_x + abs_x)
-				except:
-					  None
+        except:
+            None
 
         for obj in self.objects:
             obj.deep_refresh(self.area.y_loc + abs_y, self.area.x_loc + abs_x)
