@@ -122,11 +122,12 @@ class TestNetworkInfo_to_xml(unittest.TestCase):
             else:
                 self.fail("Unexpected service found: %s" %
                            etree.tostring(svc, pretty_print=True))
-
         for instance in net_phys:
-            if instance.get("name") == "default":
+            if instance.get("name") == "nwam":
+                self.assertEquals("false", instance.get("enabled"))
+            elif instance.get("name") == "default":
                 self.assertEquals("true", instance.get("enabled"))
-
+        
         for prop_group in net_install.iterchildren().next():
             if prop_group.get("name") not in ("install_ipv4_interface",
                                               "install_ipv6_interface"):

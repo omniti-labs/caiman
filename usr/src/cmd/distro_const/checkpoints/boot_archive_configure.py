@@ -28,6 +28,7 @@
 usable boot archive.
 """
 import os
+import os.path
 import shutil
 import datetime
 
@@ -82,9 +83,9 @@ class BootArchiveConfigure(Checkpoint):
         cmd = [cli.DEVFSADM, "-r", self.ba_build]
         run(cmd)
 
-        # etc/dev/.devfsadm_dev.lock gets created every time devfsadm is run.
-        # remove it since there's no point in carrying it forward through to
-        # the image
+        # etc/dev/.devfsadm_dev.lock gets created every time
+        # devfsadm is run. remove it since there's no point
+        # in carrying it forward through to the image
         lockfile = os.path.join(self.ba_build, "etc/dev/.devfsadm_dev.lock")
         if os.path.exists(lockfile):
             self.logger.debug("removing devfsadm lock file")
@@ -99,7 +100,7 @@ class BootArchiveConfigure(Checkpoint):
                os.path.join(self.ba_build, "etc/rtc_config")]
         run(cmd)
 
-        # go to the ba_build directory
+        # go to the ba_build
         self.logger.debug("creating symlinks and mountpoints")
         os.chdir(self.ba_build)
 
@@ -146,11 +147,6 @@ class BootArchiveConfigure(Checkpoint):
         # create .cdrom directory
         self.logger.debug("creating .cdrom directory")
         os.mkdir(".cdrom", 0755)
-
-        # touch an empty etc/dumpadm.conf file so the dumpadm service will
-        # start correctly
-        with open(os.path.join(self.ba_build, "etc/dumpadm.conf"), "w"):
-            pass
 
         # create opt symlink to mnt/misc/opt if needed
         self.logger.debug("checking for symlink of opt -> mnt/misc/opt")

@@ -29,7 +29,6 @@ Common screen functionality for text installer UI
 from terminalui import _
 from terminalui.inner_window import InnerWindow
 
-
 class QuitException(StandardError):
     '''Raised when a function needs to force the program to quit gracefully'''
     pass

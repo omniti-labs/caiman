@@ -138,10 +138,9 @@ class TargetSelection(Checkpoint):
                2. disk.volid (volume name)
                3. disk.devid (device id)
                4. disk.devpath (device path)
-               5. disk.receptacle (disk silk screen name)
-               6. disk.is_boot_disk() (contains keyword "boot_disk")
+               5. disk.is_boot_disk() (contains keyword "boot_disk")
 
-               7. If None of the above are specified, a disk can be
+               6. If None of the above are specified, a disk can be
                   identified via any/all of the three disk properties:
                     - dev_type
                     - dev_vendor
@@ -159,7 +158,11 @@ class TargetSelection(Checkpoint):
             # match on boot disk or one of the disk properties if specified
             if disk.ctd is None and disk.volid is None and \
                disk.devpath is None and disk.devid is None and \
-               disk.receptacle is None and disk.wwn is None:
+               disk.wwn is None:
+
+                # Attempt to match on boot_disk
+                if disk.is_boot_disk() and discovered_disk.is_boot_disk():
+                    return discovered_disk
 
                 # Attempt to match disk_prop. Any of the properties
                 # dev_type/dev_vendor/dev_size must been specified
@@ -167,10 +170,6 @@ class TargetSelection(Checkpoint):
                     disk.disk_prop is not None:
                     if discovered_disk.disk_prop.prop_matches(disk.disk_prop):
                         return discovered_disk
-
-                # Attempt to match on boot_disk
-                if disk.is_boot_disk() and discovered_disk.is_boot_disk():
-                    return discovered_disk
 
         return None
 
@@ -202,35 +201,8 @@ class TargetSelection(Checkpoint):
                     return "[devpath='%s']" % disk.devpath
                 if disk.devid is not None:
                     return "[devid='%s']" % disk.devid
-                if disk.receptacle is not None:
-                    return "[receptacle='%s']" % disk.receptacle
 
-                if disk.disk_prop is not None:
-                    disk_props = list()
-                    if disk.disk_prop.dev_type is not None:
-                        disk_props.append(
-                            "dev_type='%s'" % (disk.disk_prop.dev_type))
-                    if disk.disk_prop.dev_vendor is not None:
-                        disk_props.append(
-                            "dev_vendor='%s'" % (disk.disk_prop.dev_vendor))
-                    if disk.disk_prop.dev_chassis is not None:
-                        disk_props.append(
-                            "dev_chassis='%s'" %
-                            (disk.disk_prop.dev_chassis))
-                    if disk.disk_prop.dev_size is not None:
-                        disk_props.append(
-                            "dev_size='%s'" %
-                            (str(disk.disk_prop.dev_size.sectors) +
-                             Size.sector_units))
-                    if disk_props:
-                        disk_props_str = "[" + ",".join(disk_props) + "]"
-                        return disk_props_str
-
-                # All else fails, maybe looking for boot-disk?
-                if disk.is_boot_disk():
-                    return "[boot-disk]"
-
-        return str(disk)
+        return "UNKNOWN"
 
     def __handle_vdev(self, vdev):
         '''Create Vdev object
@@ -3204,7 +3176,7 @@ class TargetSelection(Checkpoint):
         self.controller._dry_run = self.dry_run
 
         # Store list of discovered disks
-        self._discovered_disks = discovered.get_children(class_type=Disk)
+        self._discovered_disks = discovered.get_descendants(class_type=Disk)
 
         # Store list of discovered zpools
         self._discovered_zpools = discovered.get_descendants(class_type=Zpool)

@@ -41,10 +41,8 @@ from solaris_install.data_object.simple import SimpleXmlHandlerBase
 from solaris_install.data_object.cache import DataObject, DataObjectCache
 
 
-__all__ = ["cgc", "controller", "discovery", "instantiation", "libdiskmgt",
-           "libnvpair", "logical", "physical", "varshared", "vdevs"]
-
-CRO_LABEL = "croinfo output"
+__all__ = ["cgc", "controller", "libdiskmgt", "libnvpair", "logical",
+           "physical", "varshared", "vdevs"]
 
 
 # simple DOC object for the target element
@@ -173,42 +171,6 @@ class Target(SimpleXmlHandlerBase):
             # everything validates
             self.logger.debug("Final Validation succeeded")
             return True
-
-    def get_children(self, name=None, class_type=None, max_count=None,
-                     not_found_is_err=False):
-        """ overload the parent object's get_children method to also provide
-        sorting for croinfo output
-        """
-        # call the parent's method first
-        unsorted_children = super(Target, self).get_children(name, class_type,
-            max_count, not_found_is_err)
-
-        # get_children may be called before this Target DOC object is
-        # inserted into the DOC so simply return the unsorted_children list.
-        if self.parent is None or class_type is None or \
-           not hasattr(class_type, "_label_disk"):
-            return unsorted_children
-
-        # retreive the DataObjectDict from the DOC
-        cro_data = self.root_object.persistent.get_first_child(
-            name=CRO_LABEL)
-
-        # not all systems support croinfo so if the data_dict is empty or not
-        # present in the DOC, return the unsorted list
-        if not cro_data:
-            return unsorted_children
-
-        cro_dict = cro_data.data_dict
-
-        # compare the first element of the croinfo tuple (the position)
-        def compare(x, y):
-            if isinstance(x, physical.Disk) and isinstance(y, physical.Disk) \
-               and x.ctd in cro_dict and y.ctd in cro_dict:
-                return cmp(cro_dict[x.ctd][0], cro_dict[y.ctd][0])
-            return 0  # Default is to maintain location as-is
-
-        # sort the children by croinfo order
-        return sorted(unsorted_children, cmp=compare)
 
 
 # register all the DOC classes

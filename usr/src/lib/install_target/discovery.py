@@ -40,10 +40,9 @@ import solaris_install.target.vdevs as vdevs
 from bootmgmt.pysol import di_find_prop
 
 from solaris_install import CalledProcessError, Popen, run
-from solaris_install.data_object.data_dict import DataObjectDict
 from solaris_install.engine import InstallEngine
 from solaris_install.engine.checkpoint import AbstractCheckpoint as Checkpoint
-from solaris_install.target import CRO_LABEL, Target
+from solaris_install.target import Target
 from solaris_install.target.libbe import be
 from solaris_install.target.libdevinfo import devinfo
 from solaris_install.target.libdiskmgt import const, diskmgt
@@ -54,7 +53,6 @@ from solaris_install.target.physical import Disk, DiskProp, DiskGeometry, \
 from solaris_install.target.size import Size
 
 
-CROINFO = "/usr/sbin/croinfo"
 DEVFSADM = "/usr/sbin/devfsadm"
 DHCPINFO = "/sbin/dhcpinfo"
 EEPROM = "/usr/sbin/eeprom"
@@ -103,9 +101,6 @@ class TargetDiscovery(Checkpoint):
 
         # kernel architecture
         self.arch = platform.processor()
-
-        # croinfo dictionary
-        self.cro_dict = dict()
 
     def is_bootdisk(self, name):
         """ is_bootdisk() -- simple method to compare the name of the disk in
@@ -214,11 +209,6 @@ class TargetDiscovery(Checkpoint):
         if drive.controllers:
             new_disk.disk_prop.dev_type = drive.controllers[0].attributes.type
         new_disk.disk_prop.dev_vendor = drive_attributes.vendor_id
-
-        # set the alias and receptacle for disks, if possible
-        if not new_disk.iscdrom and new_disk.ctd in self.cro_dict:
-            new_disk.disk_prop.dev_chassis = self.cro_dict[new_disk.ctd][1]
-            new_disk.receptacle = self.cro_dict[new_disk.ctd][2]
 
         # walk the media node to extract partitions and slices
         if drive_media is None:
@@ -909,42 +899,10 @@ class TargetDiscovery(Checkpoint):
                 raise RuntimeError("target_lun: %s not found on target"
                                    % iscsi.target_lun)
 
-    def setup_croinfo(self):
-        """ set up a DataObjectDict representing the output from
-        /usr/sbin/croinfo
-        """
-        cmd = [CROINFO, "-h", "-O", "cAR"]
-        p = run(cmd)
-
-        # for systems that do not support CRO, nothing will be returned in
-        # stdout so simply return.
-        if not p.stdout:
-            return
-
-        # keep a positional counter since we can't use OrderedDicts until 2.7
-        i = 1
-        for line in p.stdout.splitlines():
-            (ctd, alias, receptacle) = line.split(":")
-            # skip any entries where the ctd is missing.
-            if not ctd:
-                continue
-
-            self.cro_dict[ctd] = (i, alias or None, receptacle)
-            i += 1
-
-        if self.cro_dict:
-            # Only insert if there is something in it
-            self.doc.persistent.insert_children(
-                DataObjectDict(CRO_LABEL, self.cro_dict,
-                               generate_xml=True))
-
     def execute(self, dry_run=False):
         """ primary execution checkpoint for Target Discovery
         """
         self.dry_run = dry_run
-
-        # setup croinfo mappings
-        self.setup_croinfo()
 
         # setup iSCSI so that all iSCSI physical and logical devices can be
         # discovered
