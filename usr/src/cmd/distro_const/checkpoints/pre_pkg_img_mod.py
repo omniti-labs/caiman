@@ -232,8 +232,7 @@ class PrePkgImgMod(Checkpoint):
         # Save the original manifests - they replace media specific ones
         # on the target system in case of CPIO transfer method.
         #
-        save_list = ["lib/svc/manifest/milestone/config.xml",
-                     "lib/svc/manifest/network/network-install.xml",
+        save_list = ["lib/svc/manifest/network/network-install.xml",
                      "lib/svc/manifest/network/network-physical.xml"]
 
         self.save_files_directories(save_list)

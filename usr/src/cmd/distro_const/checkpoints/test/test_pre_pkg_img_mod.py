@@ -246,7 +246,6 @@ class TestConfigureSMF(unittest.TestCase):
                             "/usr/share/lib/xml/dtd/",
                             "lib/svc/manifest/milestone/",
                             "lib/svc/manifest/network/",
-                            "lib/svc/manifest/milestone/config.xml",
                             "lib/svc/manifest/network/network-physical.xml",
                             "lib/svc/manifest/network/network-install.xml"]
 
