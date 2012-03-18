@@ -745,7 +745,7 @@ DISK LAYOUTS
 
                   This will be the name of the new BE that is
                   created by the installer. It defaults to the
-                  name "solaris" if the <be> element is not
+                  name "omnios" if the <be> element is not
                   specified.
 
                   The automated installer makes use of the
@@ -755,9 +755,9 @@ DISK LAYOUTS
                   installing a zone), a boot environment with
                   this name may already exist, in which case this
                   name is used as a base to generate a new name.
-                  For example, given a value of "solaris", the
+                  For example, given a value of "omnios", the
                   resultant boot environment name may be
-                  "solaris-N" where N is an integer.
+                  "omnios-N" where N is an integer.
 
              A Boot Environment is created as a ZFS dataset, and
              as such is capable of having ZFS properties set on
@@ -1071,7 +1071,7 @@ SOFTWARE SECTIONS
 .in + 9
 .nf
             <source>
-                <publisher name="os.omniti.com">
+                <publisher name="jeos.omniti.com">
                     <origin name="http://pkg.omniti.com/omnios/release"/>
                     <mirror name="http://localpkg.mycompany.com/solaris"/>
                 </publisher>

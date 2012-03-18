@@ -212,7 +212,7 @@ DTD sample manifest for Automatic Installer input manifest specification.
           -->
           <filesystem name="export" mountpoint="/export"/>
           <filesystem name="export/home"/>
-          <be name="solaris"/>
+          <be name="omnios"/>
         </zpool>
       </logical>
     </target>
@@ -248,7 +248,7 @@ DTD sample manifest for Automatic Installer input manifest specification.
         </image>
       </destination>
       <source>
-        <publisher name="solaris">
+        <publisher name="jeos.omniti.com">
           <origin name="http://pkg.omniti.com/omnios/release"/>
         </publisher>
       </source>
@@ -286,7 +286,7 @@ DTD sample manifest for Automatic Installer input manifest specification.
 
                 <search_all addall="true">
                     <source>
-                        <publisher name="solaris">
+                        <publisher name="jeos.omniti.com">
                             <origin name="http://pkg.omniti.com/omnios/release"/>
                         </publisher>
                     </source>

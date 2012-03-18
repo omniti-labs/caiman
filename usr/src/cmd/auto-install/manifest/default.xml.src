@@ -48,7 +48,7 @@
           -->
           <filesystem name="export" mountpoint="/export"/>
           <filesystem name="export/home"/>
-          <be name="solaris"/>
+          <be name="omnios"/>
         </zpool>
       </logical>
     </target>
@@ -79,7 +79,7 @@
         </image>
       </destination>
       <source>
-        <publisher name="solaris">
+        <publisher name="jeos.omniti.com">
           <origin name="http://pkg.omniti.com/omnios/release"/>
         </publisher>
       </source>

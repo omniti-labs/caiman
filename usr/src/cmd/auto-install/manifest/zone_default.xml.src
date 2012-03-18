@@ -49,7 +49,7 @@
                     -->
                     <filesystem name="export" mountpoint="/export"/>
                     <filesystem name="export/home"/>
-                    <be name="solaris">
+                    <be name="omnios">
                         <options>
                             <option name="compression" value="on"/>
                         </options>

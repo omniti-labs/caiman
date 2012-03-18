@@ -298,7 +298,7 @@ class TargetController(object):
         #       <logical>
         #           <zpool name="rpool" is_root="true">
         #               <vdev name="vdev"/>
-        #               <be name="solaris" mountpoint="/a"/>
+        #               <be name="omnios" mountpoint="/a"/>
         #           </zpool>
         #       </logical>
         #   </target>
