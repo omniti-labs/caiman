@@ -109,6 +109,6 @@ PLATNUM= 0
 # Note: :sh is used for finding the values because it is evaluated
 # once during the package build.
 #
-OPENCS  :sh = (hg tip --template '{rev}\n')
+OPENCS  :sh = (git show --format=%at | head -1)
 NIGHTLYID		= $(OPENCS)
 BUILDID= 1
