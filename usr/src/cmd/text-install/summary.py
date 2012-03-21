@@ -173,15 +173,8 @@ class SummaryScreen(BaseScreen):
         of strings
         
         '''
-        root = self.sysconfig.users.root
-        primary = self.sysconfig.users.user
         user_summary = []
-        if not root.password:
-            user_summary.append(_("  Warning: No root password set"))
-        if primary.login_name:
-            user_summary.append(_("  Username: %s") % primary.login_name)
-        else:
-            user_summary.append(_("  No user account"))
+        user_summary.append(_("  root password is blank. set it at next login."))
         return user_summary
     
     def get_disk_summary(self):

@@ -145,12 +145,8 @@ class NetworkInfo(SMFConfig):
                 NetworkInfo.FROMGZ_NICS_NUM += 1
                 continue
 
-            #
-            # If vanity name exists for link, use it as NIC name
-            # and store physical link name as a NIC device.
-            #
-            argslist = ['/usr/sbin/dladm', 'show-phys', '-L', '-o',
-                        'vanity,device', '-p', nic]
+            argslist = ['/usr/sbin/dladm', 'show-phys', '-o',
+                        'device', '-p', nic]
             try:
                 n_name = nic
                 n_dev = ""
@@ -159,7 +155,7 @@ class NetworkInfo(SMFConfig):
                                                stderr=Popen.STORE,
                                                logger=LOGGER())
             except CalledProcessError:
-                LOGGER().warn("'dladm show-phys -L -o vanity,device -p %s' "
+                LOGGER().warn("'dladm show-phys -o device -p %s' "
                               "failed.", nic)
             else:
                 n = dladm_popen.stdout.strip()
@@ -295,6 +291,9 @@ class NetworkInfo(SMFConfig):
         If device info was not populated, return just NIC name.
 
         '''
+        if nic is None:
+            return "none"
+
         if nic[NetworkInfo.NIC_DEV_KEY]:
             nic_desc = "%s (%s)" % (nic[NetworkInfo.NIC_NAME_KEY],
                                     nic[NetworkInfo.NIC_DEV_KEY])

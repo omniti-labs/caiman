@@ -54,12 +54,14 @@ class PrePkgImgMod(Checkpoint):
     """ Configure the pkg_image path before creating the boot_archive.
     """
 
-    DEFAULT_ARG = {"root_password": "solaris", "is_plaintext": "true"}
+    DEFAULT_ARG = {"root_password": "", "is_plaintext": "true"}
 
     def __init__(self, name, arg=DEFAULT_ARG):
         super(PrePkgImgMod, self).__init__(name)
         self.root_password = arg.get("root_password",
                                      self.DEFAULT_ARG.get("root_password"))
+        if self.root_password is None:
+            self.root_password = ""
         self.is_plaintext = arg.get("is_plaintext",
                                     self.DEFAULT_ARG.get("is_plaintext"))
         self.hostname = arg.get("hostname")
@@ -323,7 +325,7 @@ class AIPrePkgImgMod(PrePkgImgMod, Checkpoint):
     """ class to prepare the package image area for AI distributions
     """
 
-    DEFAULT_ARG = {"root_password": "solaris", "is_plaintext": "true",
+    DEFAULT_ARG = {"root_password": "", "is_plaintext": "true",
                    "service_name": None}
     SERVICE_NAME = "solarisdev-%{arch}-%{build}"
 
@@ -331,6 +333,8 @@ class AIPrePkgImgMod(PrePkgImgMod, Checkpoint):
         super(AIPrePkgImgMod, self).__init__(name)
         self.root_password = arg.get("root_password",
                                      self.DEFAULT_ARG.get("root_password"))
+        if self.root_password is None:
+            self.root_password = ""
         self.is_plaintext = arg.get("is_plaintext",
                                     self.DEFAULT_ARG.get("is_plaintext"))
         self.hostname = arg.get("hostname")
@@ -491,12 +495,14 @@ class LiveCDPrePkgImgMod(PrePkgImgMod, Checkpoint):
     """ class to prepare the package image area for LiveCD distributions
     """
 
-    DEFAULT_ARG = {"root_password": "solaris", "is_plaintext": "true"}
+    DEFAULT_ARG = {"root_password": "", "is_plaintext": "true"}
 
     def __init__(self, name, arg=DEFAULT_ARG):
         super(LiveCDPrePkgImgMod, self).__init__(name)
         self.root_password = arg.get("root_password",
                                      self.DEFAULT_ARG.get("root_password"))
+        if self.root_password is None:
+            self.root_password = ""
         self.is_plaintext = arg.get("is_plaintext",
                                     self.DEFAULT_ARG.get("is_plaintext"))
         self.hostname = arg.get("hostname")
@@ -691,12 +697,14 @@ class TextPrePkgImgMod(PrePkgImgMod, Checkpoint):
     """ class to prepare the package image area for text install distributions
     """
 
-    DEFAULT_ARG = {"root_password": "solaris", "is_plaintext": "true"}
+    DEFAULT_ARG = {"root_password": "", "is_plaintext": "true"}
 
     def __init__(self, name, arg=DEFAULT_ARG):
         super(TextPrePkgImgMod, self).__init__(name)
         self.root_password = arg.get("root_password",
                                      self.DEFAULT_ARG.get("root_password"))
+        if self.root_password is None:
+            self.root_password = ""
         self.is_plaintext = arg.get("is_plaintext",
                                     self.DEFAULT_ARG.get("is_plaintext"))
         self.hostname = arg.get("hostname")

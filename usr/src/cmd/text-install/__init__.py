@@ -179,7 +179,7 @@ def make_screen_list(main_win, target_controller, install_data):
     # as discussed in Python bug 2320.
     disk_screen.start_discovery()
     
-    result.append(SummaryScreen(main_win))
+    # result.append(SummaryScreen(main_win))
     result.append(InstallProgress(main_win, install_data, target_controller))
     result.append(InstallStatus(main_win, install_data))
     result.append(LogViewer(main_win, install_data))

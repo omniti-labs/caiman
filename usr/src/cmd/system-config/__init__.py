@@ -73,9 +73,8 @@ SC_GROUP_USERS = 'users'
 SC_GROUP_SYSTEM = 'system'
 
 # list of configuration groups
-SC_ALL_GROUPS = [SC_GROUP_IDENTITY, SC_GROUP_NETWORK, SC_GROUP_NS,
-                 SC_GROUP_KBD, SC_GROUP_LOCATION, SC_GROUP_DATETIME,
-                 SC_GROUP_USERS]
+SC_ALL_GROUPS = [SC_GROUP_IDENTITY, SC_GROUP_NETWORK,
+                 SC_GROUP_KBD, SC_GROUP_LOCATION, SC_GROUP_DATETIME]
 
 # all valid configuration groups including 'system' pseudo-group
 SC_VALID_GROUPS = SC_ALL_GROUPS + [SC_GROUP_SYSTEM]
@@ -227,17 +226,10 @@ def get_all_screens(main_win):
 
     result = []
     result.append(NetworkTypeScreen(main_win, True))
-    result.append(NICSelect(main_win))
-    result.append(NICConfigure(main_win))
-    _append_nameservice_screens(result, main_win)
     result.append(TimeZone(main_win, screen=TimeZone.REGIONS))
     result.append(TimeZone(main_win, screen=TimeZone.LOCATIONS))
     result.append(TimeZone(main_win))
     result.append(DateTimeScreen(main_win))
-
-    # All screens are to be brought up, so make sure complete user screen
-    # (root password as well as initial user account) is displayed.
-    result.append(UserScreen(main_win, show_user_account=True))
 
     return result
 
@@ -1003,7 +995,6 @@ def _make_screen_list(main_win):
     screens = []
     screens.append(WelcomeScreen(main_win))
     screens.extend(get_screens_from_groups(main_win))
-    screens.append(SummaryScreen(main_win))
 
     return screens
 
