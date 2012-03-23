@@ -94,7 +94,6 @@ class DiskScreen(BaseScreen):
                     (10, _(" Size(GB)")),
                     (15, _("Manufacturer")),
                     (6, _("Boot")),
-                    (44, _("Device")),
                     (3, ""),
                     (22, _("Notes"))] #blank header for the notes column
     VENDOR_LEN = 15
