@@ -54,7 +54,7 @@ SWAP = "/usr/sbin/swap"
 UMOUNT = "/usr/sbin/umount"
 ZFS = "/usr/sbin/zfs"
 ZPOOL = "/usr/sbin/zpool"
-DEFAULT_BE_NAME = "solaris"
+DEFAULT_BE_NAME = "omnios"
 
 
 class Logical(DataObject):
