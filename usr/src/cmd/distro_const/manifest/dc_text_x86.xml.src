@@ -21,6 +21,7 @@
   CDDL HEADER END
 
   Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
+  Copyright 2012, OmniTI Computer Consulting, Inc. All rights reserved.
 
   XML specification for building an OmniOS installer iso image
 -->
@@ -123,7 +124,7 @@
             href="/usr/share/distro_const/lang_facets.xml"/>
       </destination>
       <source>
-        <publisher name="solaris">
+        <publisher name="omnios">
           <origin name="http://pkg.omniti.com/omnios/release"/>
           <!--
             If mirrors for this publisher need to be set, specify them here.
@@ -155,7 +156,6 @@
       -->
       <software_data action="install">
         <name>pkg:/entire@latest</name>
-        <name>pkg:/group/system/solaris-large-server</name>
         <name>pkg:/system/install/text-install</name>
         <name>pkg:/system/install/media/internal</name>
       </software_data>
@@ -168,7 +168,7 @@
         <image img_root="{PKG_IMAGE_PATH}" action="use_existing"/>
       </destination>
       <source>
-        <publisher name="solaris">
+        <publisher name="omnios">
           <origin name="http://pkg.omniti.com/omnios/release/"/>
           <!-- 
             If mirrors for this publisher are desired, they can be set here
@@ -249,7 +249,7 @@
             the hostname here will override the default.
           -->
           <kwargs>
-            <arg name="root_password">solaris</arg>
+            <arg name="root_password"></arg>
             <arg name="is_plaintext">true</arg>
             <!-- uncomment before using
             <arg name="hostname">hostname</arg>
