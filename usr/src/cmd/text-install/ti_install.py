@@ -20,6 +20,7 @@
 # CDDL HEADER END
 #
 # Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2012, OmniTI Computer Consulting, Inc. All rights reserved.
 #
 
 '''
@@ -280,6 +281,18 @@ def do_ti_install(install_data, screen, update_status_func):
     LOGGER.debug("install mountpoint: %s", install_mountpoint)
     LOGGER.debug("new_be: %s", new_be)
     screen.tc.setup_vfstab_for_swap(ROOT_POOL, install_mountpoint)
+
+    # Fix up the timezone before we reboot
+    default_init_loc = install_mountpoint + '/etc/default/init'
+    tzfile = open(default_init_loc, 'w')
+    tzfile.write('TZ="' + timezone + '"\nCMASK=022\n')
+    tzfile.close()
+
+    # Write out the selected hostname
+    nodename_log = install_mountpoint + '/etc/nodename'
+    nodefile = open(nodename_log, 'w')
+    nodefile.write(hostname + '\n')
+    nodefile.close()
 
     post_install_cleanup(install_data)
 
