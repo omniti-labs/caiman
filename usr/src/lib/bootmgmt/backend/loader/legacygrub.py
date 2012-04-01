@@ -67,9 +67,9 @@ class LegacyGRUBBootLoader(BootLoader, MenuLstBootLoaderMixIn):
     MENU_LST_PATH = '/boot/grub/menu.lst'
 
     DEFAULT_GRUB_SPLASH = '/boot/grub/splash.xpm.gz'
-    DEFAULT_TIMEOUT = 30         # 30 seconds is the default timeout
-    DEFAULT_FORECOLOR = '343434'
-    DEFAULT_BACKCOLOR = 'F7FBFF'
+    DEFAULT_TIMEOUT = 5         # 5 seconds is the default timeout
+    DEFAULT_FORECOLOR = 'F7FBFF'
+    DEFAULT_BACKCOLOR = '333333'
 
     # This dict is applied to the menu.lst template (below)
     DEFAULT_PROPDICT = {
@@ -77,9 +77,9 @@ class LegacyGRUBBootLoader(BootLoader, MenuLstBootLoaderMixIn):
              'timeout': 'timeout ' + str(DEFAULT_TIMEOUT),
               'serial': '#   serial --unit=0 --speed=9600',
             'terminal': '#   terminal serial',
-         'splashimage': '#   splashimage ' + DEFAULT_GRUB_SPLASH,
-          'foreground': '#   foreground ' + DEFAULT_FORECOLOR,
-          'background': '#   background ' + DEFAULT_BACKCOLOR,
+         'splashimage': 'splashimage ' + DEFAULT_GRUB_SPLASH,
+          'foreground': 'foreground ' + DEFAULT_FORECOLOR,
+          'background': 'background ' + DEFAULT_BACKCOLOR,
             'minmem64': '#',
           'hiddenmenu': '#'}
 
@@ -577,14 +577,9 @@ r"""# default menu entry to boot
             # XXX - splashimage / forecolor / backcolor was specified
             # XXX - in the BootLoader properties. If there was no
             # XXX - menu.lst previously loaded, DO add the defaults.
-            if self._menufile is None:
-                default_grub_splash = LegacyGRUBBootLoader.DEFAULT_GRUB_SPLASH
-                default_forecolor = LegacyGRUBBootLoader.DEFAULT_FORECOLOR
-                default_backcolor = LegacyGRUBBootLoader.DEFAULT_BACKCOLOR
-            else:
-                default_grub_splash = None
-                default_forecolor = None
-                default_backcolor = None
+            default_grub_splash = LegacyGRUBBootLoader.DEFAULT_GRUB_SPLASH
+            default_forecolor = LegacyGRUBBootLoader.DEFAULT_FORECOLOR
+            default_backcolor = LegacyGRUBBootLoader.DEFAULT_BACKCOLOR
 
             splash = self._bl_props.get(BootLoader.PROP_SPLASH,
                                         default_grub_splash)
