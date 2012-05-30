@@ -40,7 +40,7 @@ class WelcomeScreen(BaseScreen):
     HEADER_TEXT = _("Welcome to %(release)s") % RELEASE
     WELCOME_TEXT = _("Thanks for choosing to install %(release)s! This "
                      "installer enables you to install the %(release)s "
-                     "Operating System (OS) on SPARC or x86 systems.\n\n"
+                     "Operating System (OS) on x86 systems.\n\n"
                      "The installation log will be at %(log)s.\n\n"
                      "How to navigate through this installer:")
     BULLET_ITEMS = [_("Use the function keys listed at the bottom of each "
