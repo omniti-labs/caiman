@@ -344,6 +344,8 @@ class DiskScreen(BaseScreen):
         len_mftr = DiskScreen.DISK_HEADERS[4][0] - 1
         for disk in self.disks:
             disk_text_fields = []
+            if disk.disk_prop is None or disk.disk_prop.dev_type is None:
+                continue
             type_field = disk.disk_prop.dev_type[:len_type]
             type_field = ljust_columns(type_field, len_type)
             disk_text_fields.append(type_field)

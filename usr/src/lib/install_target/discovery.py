@@ -138,7 +138,8 @@ class TargetDiscovery(Checkpoint):
             return None
 
         # set attributes for the disk
-        new_disk.wwn = getattr(drive.aliases[0].attributes, "wwn", None)
+        if type(drive.aliases) is list and len(drive.aliases) > 0:
+            new_disk.wwn = getattr(drive.aliases[0].attributes, "wwn", None)
 
         existing_wwns = [d.wwn for d in \
                          self.root.get_descendants(class_type=Disk) \
