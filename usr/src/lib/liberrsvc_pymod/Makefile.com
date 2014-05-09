@@ -44,7 +44,7 @@ CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS}
 SOFLAGS		+= -L$(ROOTUSRLIB) -L$(ROOTADMINLIB) \
 		-R$(ROOTUSRLIB:$(ROOT)%=%)  \
 		-R$(ROOTADMINLIB:$(ROOT)%=%) -L/lib \
-		-lpython2.6 -lm -lc -zdefs
+		-lpython2.6 -lm -lc
 
 static:
 
