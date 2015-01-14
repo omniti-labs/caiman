@@ -158,8 +158,7 @@ class InstallFancyProgressTracker(progress.FancyUNIXProgressTracker):
         and will fail to initialize otherwise.
     '''
     def __init__(self, trans_logger, quiet=False, verbose=0):
-        super(InstallFancyProgressTracker, self).__init__(quiet=quiet,
-            verbose=verbose)
+        super(InstallFancyProgressTracker, self).__init__()
 
         self.trans_logger = trans_logger
         self._dl_cur_pkg = None
