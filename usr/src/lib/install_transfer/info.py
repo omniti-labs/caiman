@@ -21,6 +21,8 @@
 #
 # Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
+# Copyright 2015, OmniTI Computer Consulting, Inc. All rights reserved.
+#
 
 '''
    Transfer checkpoint data objects. These objects are stored in the data
@@ -845,6 +847,41 @@ class Origin(DataObject):
         '''
         name = element.get(Origin.ORIGIN_NAME_LABEL)
         obj = Origin(name)
+        return obj
+
+class SigPolicy(DataObject):
+    '''Subclass of DataObject to contain the information needed for IPS
+       Signature Policy.
+    '''
+    SIGPOL_LABEL = "sigpolicy"
+    SIGPOL_NAME_LABEL = "name"
+
+    def __init__(self, sigpol_name=None):
+        super(SigPolicy, self).__init__(SigPolicy.SIGPOL_LABEL)
+        self.sigpolicy = sigpol_name
+
+    def to_xml(self):
+        '''Method to create xml sigpolicy  element'''
+        element = etree.Element(SigPolicy.SIGPOL_LABEL)
+        element.set(SigPolicy.SIGPOL_NAME_LABEL, self.sigpolicy)
+        return element
+
+    @classmethod
+    def can_handle(cls, element):
+        '''
+           Returns True if
+           - tag = sigpolicy
+           Returns False otherwise
+        '''
+        return element.tag == SigPolicy.SIGPOL_LABEL
+
+    @classmethod
+    def from_xml(cls, element):
+        '''Method to transfer the sigpolicy xml data to the data object
+           cache
+        '''
+        name = element.get(SigPolicy.SIGPOL_NAME_LABEL)
+        obj = SigPolicy(name)
         return obj
 
 

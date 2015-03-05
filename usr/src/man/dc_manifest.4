@@ -308,6 +308,11 @@ In the source element, use the publisher name and optional  mirror name tags to 
 <source>
   <publisher name="jeos.omniti.com">
     <origin name="http://pkg.omniti.com/omnios/release/"/>
+    <!--
+      If you want a stronger signature policy for your installation, you can
+      specify one in this section with "sigpolicy".
+    -->
+    <sigpolicy name="require-signatures"/>
   </publisher>
 </source>
 .fi

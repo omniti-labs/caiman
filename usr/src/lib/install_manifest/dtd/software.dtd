@@ -20,6 +20,8 @@
 
  Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 
+ Copyright 2015, OmniTI Computer Consulting, Inc. All rights reserved.
+
 -->
 
 <!ELEMENT software (destination?, source*, software_data*)>
@@ -100,8 +102,11 @@
 	then publishers known by the specified repository will be added to 
 	the image. Origin can be an uri, path to a file, archive, directory.
 -->
-<!ELEMENT publisher (origin+, mirror*)>
+<!ELEMENT publisher (origin+, mirror*, sigpolicy?)>
 <!ATTLIST publisher name CDATA #IMPLIED>
+
+<!ELEMENT sigpolicy EMPTY>
+<!ATTLIST sigpolicy name CDATA #REQUIRED>
 
 <!ELEMENT origin EMPTY>
 <!ATTLIST origin name CDATA #REQUIRED>

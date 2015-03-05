@@ -22,6 +22,7 @@
 
 #
 # Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2015, OmniTI Computer Consulting, Inc. All rights reserved.
 #
 '''Transfer IPS checkpoint. Sub-class of the checkpoint class'''
 
@@ -56,6 +57,7 @@ from solaris_install.transfer.info import Mirror
 from solaris_install.transfer.info import Origin
 from solaris_install.transfer.info import Property
 from solaris_install.transfer.info import Publisher
+from solaris_install.transfer.info import SigPolicy
 from solaris_install.transfer.info import Software
 from solaris_install.transfer.info import Source
 from solaris_install.transfer.info import ACTION, CONTENTS, \
@@ -309,6 +311,7 @@ class AbstractIPS(Checkpoint):
         self._publ = None
         self._origin = []
         self._mirror = []
+	self._sigpol = None
         self._add_publ = []
         self._add_origin = []
         self._add_mirror = []
@@ -525,6 +528,11 @@ class AbstractIPS(Checkpoint):
                 if self._mirror is not None:
                     for mirror in self._mirror:
                         repository.add_mirror(mirror)
+		# Set the signature policy if the XML says so...
+		if self._sigpol != None:
+		    sig_props = {}
+		    sig_props["signature-policy"] = self._sigpol;
+		    pub.update_props(set_props=sig_props)
                 self.api_inst.update_publisher(pub=pub, refresh_allowed=False,
                                                search_first=True)
             else:
@@ -536,6 +544,11 @@ class AbstractIPS(Checkpoint):
                 else:
                     repo = publisher.Repository(origins=self._origin)
                 pub = publisher.Publisher(prefix=self._publ, repository=repo)
+		# Set the signature policy if the XML says so...
+		if self._sigpol != None:
+		    sig_props = {}
+		    sig_props["signature-policy"] = self._sigpol;
+		    pub.update_props(set_props=sig_props)
                 self.api_inst.add_publisher(pub=pub, refresh_allowed=False,
                                             search_first=True)
 
@@ -870,6 +883,7 @@ class TransferIPS(AbstractIPS):
         self._publ = None
         self._origin = []
         self._mirror = []
+	self._sigpol = None
         self._add_publ = []
         self._add_origin = []
         self._add_mirror = []
@@ -984,6 +998,13 @@ class TransferIPS(AbstractIPS):
         '''Set the preferred or additional publishers. Which publisher type to
            set is determined by the boolean, preferred.
         '''
+	# NOTE: This list should be exactly one element...
+	sigpol_list = pub.get_children(SigPolicy.SIGPOL_LABEL, SigPolicy)
+	for sigpol in sigpol_list:
+	    self.logger.debug("Signature policy is %s", sigpol.sigpolicy)
+	    if self._sigpol != None:
+		raise ValueError("Only one signature policy in a publisher.")
+	    self._sigpol = sigpol.sigpolicy
         if preferred:
             self._publ = pub.publisher
             if pub.publisher:
@@ -1047,7 +1068,7 @@ class TransferIPS(AbstractIPS):
 
     def _parse_src(self, soft_node):
         '''Parse the DOC Source, filling in the local attributes for
-           _publ, _origin, _mirror, _add_publ, _add_origin, _add_mirror.
+           _publ, _origin, _mirror, _sigpol, _add_publ, _add_origin, _add_mirror.
         '''
         self.logger.debug("Reading the IPS source")
 

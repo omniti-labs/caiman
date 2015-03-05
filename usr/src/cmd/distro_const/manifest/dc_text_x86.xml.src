@@ -21,7 +21,7 @@
   CDDL HEADER END
 
   Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
-  Copyright 2012, OmniTI Computer Consulting, Inc. All rights reserved.
+  Copyright 2015, OmniTI Computer Consulting, Inc. All rights reserved.
 
   XML specification for building an OmniOS installer iso image
 -->
@@ -176,6 +176,14 @@
           <!-- Uncomment before using
           <mirror name="mirror.example.com"></mirror>
           -->
+          <!-- 
+            If you want a stronger than "verify" signature policy, use the
+	    "sigpolicy" element to select a stronger one (like
+	    require-signatures).
+          -->
+	  <!-- Uncomment before using
+	  <sigpolicy name="require-signatures"></sigpolicy>
+	  -->
         </publisher>
       </source>
     </software>
