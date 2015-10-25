@@ -210,7 +210,7 @@ file path=var/installadm/ai-webserver/AI.db
 file path=var/installadm/ai-webserver/ai-httpd.conf
 license cr_Sun license=cr_Sun
 depend fmri=database/sqlite-3 type=require
-depend fmri=service/network/dhcp/isc-dhcp type=require
+depend fmri=network/service/isc-dhcp type=require
 depend fmri=service/network/dns/mdns type=require
 depend fmri=service/network/tftp type=require
 depend fmri=web/server/apache-22 type=require
