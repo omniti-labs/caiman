@@ -90,12 +90,12 @@ class DiskScreen(BaseScreen):
                   " at defect.opensolaris.org.")
     
     DISK_HEADERS = [(8, _("Type")),
-                    (9, _("Device")),
                     (10, _(" Size(GB)")),
-                    (15, _("Manufacturer")),
                     (6, _("Boot")),
+                    (26, _("Device")),
+                    (10, _("Vendor")),
                     (3, ""),
-                    (22, _("Notes"))] #blank header for the notes column
+                    (10, _("Notes"))] #blank header for the notes column
     VENDOR_LEN = 15
 
     SPINNER = ["\\", "|", "/", "-"]
