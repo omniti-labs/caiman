@@ -87,7 +87,7 @@ static FILE	*_log_file = NULL;
  *		This function was moved here from libspmisvc so
  *		it could use some knowledge about the log file.
  *
- *		Until after 2.6, set up a symbolic link from
+ *		Until after 2.7, set up a symbolic link from
  *		var/sadm/install_data for backwards compatibility
  *		as stated in PSARC/1994/331.
  * Scope:	publice
@@ -112,7 +112,7 @@ _setup_install_log(void)
 		 * If there is a symbolic link in the old location,
 		 * remove it.  If there is a file, not a sym link,
 		 * move it to the new location in the dated form.
-		 * Remove ths after 2.6
+		 * Remove ths after 2.7
 		 */
 
 		(void) rm_link_mv_file(old_logpath, new_logpath);
@@ -140,7 +140,7 @@ _setup_install_log(void)
 		(void) chmod(dated_path, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 		(void) symlink(basename(dated_path), new_path);
 		/*
-		 * Remove this after 2.6
+		 * Remove this after 2.7
 		 */
 		{ char tmppath[MAXPATHLEN];
 		(void) sprintf(tmppath, "%s/%s", get_rootdir(), old_logpath);
@@ -154,7 +154,7 @@ _setup_install_log(void)
 		    get_rootdir(), "/var/sadm/system/logs");
 		new_logpath = new_path + strlen(get_rootdir());
 		/*
-		 * Remove this after 2.6
+		 * Remove this after 2.7
 		 */
 		{ char tmppath[MAXPATHLEN];
 		(void) sprintf(tmppath, "%s/var/sadm/install_data/install_log",

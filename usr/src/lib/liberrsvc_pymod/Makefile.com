@@ -37,14 +37,14 @@ CLOBBERFILES	= $(CPYTHONLIB)
 CLEANFILES	= $(CLOBBERFILES)
 
 SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6 -I../../liberrsvc
+INCLUDE		= -I/usr/include/python2.7 -I../../liberrsvc
 
 CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master) -D_FILE_OFFSET_BITS=64
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} 
 SOFLAGS		+= -L$(ROOTUSRLIB) -L$(ROOTADMINLIB) \
 		-R$(ROOTUSRLIB:$(ROOT)%=%)  \
 		-R$(ROOTADMINLIB:$(ROOT)%=%) -L/lib \
-		-lpython2.6 -lm -lc
+		-lpython2.7 -lm -lc
 
 static:
 

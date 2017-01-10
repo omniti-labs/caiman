@@ -28,7 +28,7 @@ include ../Makefile.com
 include ../../Makefile.lib.64
 
 SOFLAGS		+= -L$(ROOTUSRLIB64) -L/lib/64 \
-			-lpython2.6 -lnvpair -lerrsvc
+			-lpython2.7 -lnvpair -lerrsvc
 
 install:	all .WAIT \
 		$(ROOTUSRLIB64) $(ROOTUSRLIBS64) $(ROOTUSRLIBDYNLIB64) \

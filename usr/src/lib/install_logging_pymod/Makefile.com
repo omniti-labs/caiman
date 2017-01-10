@@ -27,7 +27,7 @@ CPYTHONLIBS	= _logger.so
 
 include ../../Makefile.lib
 
-INCLUDE		= -I/usr/include/python2.6 -I../../logger
+INCLUDE		= -I/usr/include/python2.7 -I../../logger
 
 CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS}

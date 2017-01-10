@@ -31,10 +31,10 @@ set name=variant.arch value=$(ARCH)
 set name=variant.opensolaris.zone value=global value=nonglobal
 dir path=usr group=sys
 dir path=usr/lib
-dir path=usr/lib/python2.6
-dir path=usr/lib/python2.6/vendor-packages
-dir path=usr/lib/python2.6/vendor-packages/osol_install
-dir path=usr/lib/python2.6/vendor-packages/terminalui
+dir path=usr/lib/python2.7
+dir path=usr/lib/python2.7/vendor-packages
+dir path=usr/lib/python2.7/vendor-packages/osol_install
+dir path=usr/lib/python2.7/vendor-packages/terminalui
 dir path=usr/share group=sys
 dir path=usr/share/auto_install group=sys
 dir path=usr/share/auto_install/sc_profiles group=sys
@@ -47,59 +47,59 @@ dir path=var/log/install group=sys
 dir path=var/sadm group=sys
 dir path=var/sadm/system group=sys
 dir path=var/sadm/system/logs group=sys
-file path=usr/lib/python2.6/vendor-packages/osol_install/64/libzoneinfo.so
-file path=usr/lib/python2.6/vendor-packages/osol_install/__init__.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/osol_install/__init__.pyc \
+file path=usr/lib/python2.7/vendor-packages/osol_install/64/libzoneinfo.so
+file path=usr/lib/python2.7/vendor-packages/osol_install/__init__.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/osol_install/__init__.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/osol_install/install_utils.py
-file path=usr/lib/python2.6/vendor-packages/osol_install/install_utils.pyc
-file path=usr/lib/python2.6/vendor-packages/osol_install/libzoneinfo.so
-file path=usr/lib/python2.6/vendor-packages/terminalui/__init__.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/__init__.pyc mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/action.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/action.pyc mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/base_screen.py \
+file path=usr/lib/python2.7/vendor-packages/osol_install/install_utils.py
+file path=usr/lib/python2.7/vendor-packages/osol_install/install_utils.pyc
+file path=usr/lib/python2.7/vendor-packages/osol_install/libzoneinfo.so
+file path=usr/lib/python2.7/vendor-packages/terminalui/__init__.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/__init__.pyc mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/action.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/action.pyc mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/base_screen.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/base_screen.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/base_screen.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/color_theme.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/color_theme.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/color_theme.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/color_theme.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/edit_field.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/edit_field.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/edit_field.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/edit_field.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/error_window.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/error_window.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/error_window.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/error_window.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/help_screen.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/help_screen.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/help_screen.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/help_screen.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/i18n.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/i18n.pyc mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/inner_window.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/i18n.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/i18n.pyc mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/inner_window.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/inner_window.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/inner_window.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/list_item.py mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/list_item.pyc mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/main_window.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/list_item.py mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/list_item.pyc mode=0444
+file path=usr/lib/python2.7/vendor-packages/terminalui/main_window.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/main_window.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/main_window.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/screen_list.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/screen_list.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/screen_list.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/screen_list.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/scroll_window.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/scroll_window.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/scroll_window.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/scroll_window.pyc \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/window_area.py \
+file path=usr/lib/python2.7/vendor-packages/terminalui/window_area.py \
     mode=0444
-file path=usr/lib/python2.6/vendor-packages/terminalui/window_area.pyc \
+file path=usr/lib/python2.7/vendor-packages/terminalui/window_area.pyc \
     mode=0444
 file path=usr/share/auto_install/sc_profiles/enable_sci.xml group=sys \
     mode=0444

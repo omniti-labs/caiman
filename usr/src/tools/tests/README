@@ -30,19 +30,19 @@ for the slim_source gate. In order to run the tests you should:
 		pkg install runtime/python-26/tests
 		pkg install library/python-2/coverage
 	* Running the command:
-		easy_install-2.6 nose coverage
+		easy_install-2.7 nose coverage
 		(The warning messages during installation may be ignored)
 
-	  Then edit /usr/lib/python2.6/site-packages/easy-install.pth
+	  Then edit /usr/lib/python2.7/site-packages/easy-install.pth
           as follows:
 
           Need to comment out the following line:
 	  
-          /usr/lib/python2.6/vendor-packages
+          /usr/lib/python2.7/vendor-packages
 
           i.e:
 
-	  #/usr/lib/python2.6/vendor-packages
+	  #/usr/lib/python2.7/vendor-packages
   
 	Note:	As of June 22, 2010, Nose is currently in the JUCR process,
 		and may be available from the contrib repository at a
@@ -116,7 +116,7 @@ To run the nosexunit test, it should be run with sudo:
 sudo source ${WORKSPACE}/developer.sh
 sudo ${WORKSPACE}/usr/src/tools/tests/slim_test \
     -c ${WORKSPACE}/usr/src/tools/tests/tests.nose --with-nosexunit \
-    --source-folder=${ROOT}/usr/lib/python2.6/vendor-packages --enable-audit \
+    --source-folder=${ROOT}/usr/lib/python2.7/vendor-packages --enable-audit \
     --audit-config=${WORKSPACE}/usr/src/tools/env/install.pylintrc
 
 ------------------

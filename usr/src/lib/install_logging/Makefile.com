@@ -38,7 +38,7 @@ SRCS =          $(OBJECTS:.o=.c)
 include ../../Makefile.lib
 
 SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6
+INCLUDE		= -I/usr/include/python2.7
 
 CPPFLAGS        += ${INCLUDE} -D${ARCH}
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -DNDEBUG

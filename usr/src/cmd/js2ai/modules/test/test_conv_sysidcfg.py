@@ -333,7 +333,7 @@ class Test_Sysidcfg_Valid(unittest.TestCase):
         data = dict()
         payload = dict()
         payload["hostname"] = "host0"
-        payload["ip_address"] = "192.168.2.6"
+        payload["ip_address"] = "192.168.2.7"
         payload["netmask"] = "255.255.255.0"
         payload["default_route"] = "192.168.2.1"
         key_value = KeyValues("network_interface", ["eri0", payload], 1)

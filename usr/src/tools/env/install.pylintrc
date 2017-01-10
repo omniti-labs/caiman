@@ -224,7 +224,7 @@ defining-attr-methods=__init__,__new__,setUp
 [IMPORTS]
 
 # Deprecated modules which should not be used, separated by a comma
-# INSTALL: Add all 2.6 deprecated modules.
+# INSTALL: Add all 2.7 deprecated modules.
 deprecated-modules=regsub,TERMIOS,string,Bastion,rexec,posixfile,gopherlib,rgbimgmodule,pre,whrandom,rfc822,mimetools,MimeWriter,mimify,rotor,statcache,mpz,xreadlines,multifile,sets,buildtools,cfmfile,macfs,md5,sha,plat-freebsd2/IN,plat-freebsd3/IN,plat-freebsd4/IN,plat-freebsd5/IN 
 
 # Create a graph of every (i.e. internal and external) dependencies in the

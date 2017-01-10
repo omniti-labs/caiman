@@ -40,11 +40,11 @@ OBJECTS		= errsvc.o
 include ../../Makefile.lib
 
 SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6
+INCLUDE		= -I/usr/include/python2.7
 
 CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master)
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -DNDEBUG
-SOFLAGS		+= -lpython2.6 -lc -zdefs
+SOFLAGS		+= -lpython2.7 -lc -zdefs
 
 static:		$(LIBS)
 

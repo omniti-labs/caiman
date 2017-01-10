@@ -22,4 +22,4 @@
 #
 
 # This is a workaround the existing bug in pkgdepend - 18194
-<transform file path=usr/lib/python2.6/vendor-packages/bootmgmt/.+ -> default pkg.depend.bypass-generate .*>
+<transform file path=usr/lib/python2.7/vendor-packages/bootmgmt/.+ -> default pkg.depend.bypass-generate .*>

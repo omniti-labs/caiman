@@ -37,7 +37,7 @@ CLOBBERFILES	= $(CPYTHONLIB)
 CLEANFILES	= $(CLOBBERFILES)
 
 SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6
+INCLUDE		= -I/usr/include/python2.7
 
 CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master)
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} -xc99

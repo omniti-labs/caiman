@@ -30,14 +30,14 @@
  *     - 'make install' in usr/src/lib/install_logging_pymod
  *     - 'make install' in usr/src/lib/install_common
  *       (this is needed to create the file:
- * proto/root_i386/usr/lib/python2.6/vendor-packages/solaris_install/__init__.py)
+ * proto/root_i386/usr/lib/python2.7/vendor-packages/solaris_install/__init__.py)
  *     - 'make install' in usr/src/lib/install_engine
  *        (this creates the engine in osol_install)
  *
  *
  * and then:
  * - export \
- * PYTHONPATH=../../../../../proto/root_i386/usr/lib/python2.6/vendor-packages
+ * PYTHONPATH=../../../../../proto/root_i386/usr/lib/python2.7/vendor-packages
  *   (adjust "i386" for SPARC)
  * - Run ./tlogger at the command line
  */

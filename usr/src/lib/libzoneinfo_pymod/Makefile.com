@@ -35,12 +35,12 @@ HDRS		= $(EXPHDRS) $(PRIVHDRS)
 include ../../Makefile.lib
 
 SRCDIR		= ..
-INCLUDE		= -I/usr/include/python2.6 -I/usr/include/libzoneinfo
+INCLUDE		= -I/usr/include/python2.7 -I/usr/include/libzoneinfo
 
 CPPFLAGS	+= ${INCLUDE} $(CPPFLAGS.master) -D_FILE_OFFSET_BITS=64
 CFLAGS		+= $(DEBUG_CFLAGS) -Xa ${CPPFLAGS} 
 SOFLAGS		+= -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-lzoneinfo -lpython2.6
+		-lzoneinfo -lpython2.7
 
 static:	
 

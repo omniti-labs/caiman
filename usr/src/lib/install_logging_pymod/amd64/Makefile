@@ -31,7 +31,7 @@ CPPFLAGS	+= -D_LARGEFILE64_SOURCE
 SOFLAGS		+= -L$(ROOTUSRLIB64) -L$(ROOTADMINLIB64) \
 			-R$(ROOTUSRLIB64:$(ROOT)%=%)  \
 			-R$(ROOTADMINLIB64:$(ROOT)%=%) -L/lib/64 \
-			-lpython2.6 -lm -lc -zdefs
+			-lpython2.7 -lm -lc -zdefs
 
 install:	dynamic .WAIT \
 		$(ROOTPYTHONVENDORSOLINSTALLLIBS64)

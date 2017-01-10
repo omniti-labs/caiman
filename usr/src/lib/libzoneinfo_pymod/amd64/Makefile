@@ -29,7 +29,7 @@ include ../../Makefile.lib.64
 
 CPPFLAGS        += -D_LARGEFILE64_SOURCE
 SOFLAGS         += -L$(ROOTADMINLIB64) -R$(ROOTADMINLIB64:$(ROOT)%=%) \
-		-lzoneinfo -lpython2.6
+		-lzoneinfo -lpython2.7
 
 install:	dynamic .WAIT \
 		$(ROOTPYTHONVENDORINSTALLLIBS64)

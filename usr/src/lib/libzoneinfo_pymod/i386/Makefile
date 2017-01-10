@@ -28,7 +28,7 @@ include ../Makefile.com
 
 CPPFLAGS        += -D_FILE_OFFSET_BITS=64
 SOFLAGS         += -L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-lzoneinfo -lpython2.6
+		-lzoneinfo -lpython2.7
 
 install:	dynamic .WAIT \
 		$(ROOTPYTHONVENDOR) \

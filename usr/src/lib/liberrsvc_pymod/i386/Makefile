@@ -30,7 +30,7 @@ CPPFLAGS        += -D_FILE_OFFSET_BITS=64
 SOFLAGS         += -L$(ROOTUSRLIB) -L$(ROOTADMINLIB) \
 		-R$(ROOTUSRLIB:$(ROOT)%=%)  \
 		-R$(ROOTADMINLIB:$(ROOT)%=%) -L/lib \
-		-lpython2.6 -lm -lc -zdefs
+		-lpython2.7 -lm -lc -zdefs
 
 install:	dynamic .WAIT \
 		$(ROOTPYTHONVENDORINSTALLLIBS)

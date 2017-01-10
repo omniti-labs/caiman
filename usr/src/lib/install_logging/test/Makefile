@@ -45,13 +45,13 @@ OBJS =		tlogger.o\
 
 SRCS =		$(OBJS:%.o=%.c)
 
-INCLUDE =	-I. -I../ -I/usr/include/python2.6
+INCLUDE =	-I. -I../ -I/usr/include/python2.7
 
 
 DEPLIBS		= ../pics/$(ARCH)/logger.so.1
 LDLIBS +=	-L/lib -L../pics/$(ARCH) -R ../pics/$(ARCH) -llogger \
 		-L$(ROOTADMINLIB) -R$(ROOTADMINLIB:$(ROOT)%=%) \
-		-lerrsvc -lpython2.6 -lnvpair -Bdynamic
+		-lerrsvc -lpython2.7 -lnvpair -Bdynamic
 
 CPPFLAGS +=	-D_LARGEFILE64_SOURCE=1 -D_REENTRANT ${INCLUDE}
 CFLAGS +=	-g -DNDEBUG

@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/python2.7
 #
 # CDDL HEADER START
 #
@@ -30,7 +30,7 @@ directory. To see samples in action, do the following:
 * Set your PYTHONPATH ($ROOT is the path to your proto area,
         e.g. "/export/ws/slim_source/proto/root_i386"):
     export PYTHONPATH=${ROOT}/usr/snadm/lib:\
-        ${ROOT}/usr/lib/python2.6/vendor-packages/:${ROOT}/usr/lib/installadm
+        ${ROOT}/usr/lib/python2.7/vendor-packages/:${ROOT}/usr/lib/installadm
 * cd into this directory
 * Run one of the following commands:
     o To see the samples for hello_world, lists, edits, saving_state, and

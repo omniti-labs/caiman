@@ -46,7 +46,7 @@ HDRS		= $(EXPHDRS) $(PRIVHDRS)
 
 include ../Makefile.lib
 
-PYVERSION=python2.6
+PYVERSION=python2.7
 PYMODULES=	
 
 PYCMODULES=	$(PYMODULES:%.py=%.pyc)
