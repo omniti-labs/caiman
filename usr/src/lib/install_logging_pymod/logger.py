@@ -327,7 +327,12 @@ class InstallLogger(logging.Logger):
     @property
     def name(self):
         '''returns the name of the logger'''
-        return self.name
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        '''sets the name of the logger'''
+        self._name = value
 
     def addHandler(self, handler):
         '''Adds the requested handler to the InstallLogger
