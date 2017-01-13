@@ -378,53 +378,54 @@ def main():
     install_data.no_install_mode = options.no_install
 
     try:
-        with terminalui as initscr:
-            win_size_y, win_size_x = initscr.getmaxyx()
-            if win_size_y < 24 or win_size_x < 80:
-                msg = _("     Terminal too small. Min size is 80x24."
-                        " Current size is %(x)ix%(y)i.") % \
-                        {'x': win_size_x, 'y': win_size_y}
-                exit_text_installer(errcode=msg)
-            
-            screen_list = ScreenList()
-            actions = [Action(curses.KEY_F2, _("Continue"),
-                              screen_list.get_next),
-                       Action(curses.KEY_F3, _("Back"),
-                              screen_list.previous_screen),
-                       Action(curses.KEY_F6, _("Help"), screen_list.show_help),
-                       Action(curses.KEY_F9, _("Quit"), screen_list.quit)]
-            
-            main_win = MainWindow(initscr, screen_list, actions,
-                                  force_bw=options.force_bw)
-            screen_list.help = HelpScreen(main_win, _("Help Topics"),
-                                          _("Help Index"),
-                                          _("Select a topic and press "
-                                          "Continue."))
-            doc = InstallEngine.get_instance().doc
+        initscr = terminalui.setup_curses()
 
-            debug_tc = False
-            if options.debug:
-                debug_tc = True
-            target_controller = TargetController(doc, debug=debug_tc,
-                                                 dry_run=options.no_install)
+        win_size_y, win_size_x = initscr.getmaxyx()
+        if win_size_y < 24 or win_size_x < 80:
+            msg = _("     Terminal too small. Min size is 80x24."
+                    " Current size is %(x)ix%(y)i.") % \
+                    {'x': win_size_x, 'y': win_size_y}
+            exit_text_installer(errcode=msg)
 
-            win_list = make_screen_list(main_win, target_controller,
-                                        install_data)
-            screen_list.help.setup_help_data(win_list)
-            screen_list.screen_list = win_list
-            screen = screen_list.get_next()
-            ctrl_c = None
-            errcode = 0
-            while screen is not None:
-                LOGGER.debug("Displaying screen: %s", type(screen))
-                screen = screen.show()
-                if not options.debug and ctrl_c is None:
-                    # This prevents the user from accidentally hitting
-                    # ctrl-c halfway through the install. Ctrl-C is left
-                    # available through the first screen in case terminal
-                    # display issues make it impossible for the user to
-                    # quit gracefully
-                    ctrl_c = signal.signal(signal.SIGINT, signal.SIG_IGN)
+        screen_list = ScreenList()
+        actions = [Action(curses.KEY_F2, _("Continue"),
+                          screen_list.get_next),
+                   Action(curses.KEY_F3, _("Back"),
+                          screen_list.previous_screen),
+                   Action(curses.KEY_F6, _("Help"), screen_list.show_help),
+                   Action(curses.KEY_F9, _("Quit"), screen_list.quit)]
+
+        main_win = MainWindow(initscr, screen_list, actions,
+                              force_bw=options.force_bw)
+        screen_list.help = HelpScreen(main_win, _("Help Topics"),
+                                      _("Help Index"),
+                                      _("Select a topic and press "
+                                      "Continue."))
+        doc = InstallEngine.get_instance().doc
+
+        debug_tc = False
+        if options.debug:
+            debug_tc = True
+        target_controller = TargetController(doc, debug=debug_tc,
+                                             dry_run=options.no_install)
+
+        win_list = make_screen_list(main_win, target_controller,
+                                    install_data)
+        screen_list.help.setup_help_data(win_list)
+        screen_list.screen_list = win_list
+        screen = screen_list.get_next()
+        ctrl_c = None
+        errcode = 0
+        while screen is not None:
+            LOGGER.debug("Displaying screen: %s", type(screen))
+            screen = screen.show()
+            if not options.debug and ctrl_c is None:
+                # This prevents the user from accidentally hitting
+                # ctrl-c halfway through the install. Ctrl-C is left
+                # available through the first screen in case terminal
+                # display issues make it impossible for the user to
+                # quit gracefully
+                ctrl_c = signal.signal(signal.SIGINT, signal.SIG_IGN)
     except QuitException:
         LOGGER.info("User quit the installer.")
     except RebootException:
