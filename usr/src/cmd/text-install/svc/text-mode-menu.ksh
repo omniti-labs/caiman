@@ -169,6 +169,7 @@ defaultchoice=1
 for ((;;)) ; do
 
 	# Display the menu.
+	stty sane
 	clear
 	printf \
 	    "`gettext 'Welcome to the OmniOS installation menu'`"
